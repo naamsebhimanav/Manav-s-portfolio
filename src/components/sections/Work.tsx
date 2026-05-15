@@ -7,7 +7,7 @@ type Category = "All" | "Theatre" | "Art" | "Design";
 
 type Project = {
   id: number; title: string; subtitle: string; category: Category; year: string;
-  tags: string[]; desc: string; img: string; video: string | null; link: string; large: boolean; hoverVideo?: string; youtubeHover?: string;
+  tags: string[]; desc: string; img: string; video: string | null; link: string; large: boolean; hoverVideo?: string; youtubeHover?: string; fit?: boolean; maxDuration?: number;
 };
 
 const projects: Project[] = [
@@ -23,29 +23,33 @@ const projects: Project[] = [
     large: true,
   },
   {
-    id: 2, title: "Shades of Silence", subtitle: "Mixed Media Exhibition",
-    category: "Art" as const, year: "2024",
-    tags: ["Acrylic", "Installation", "Mixed Media"],
-    desc: "A 20-piece exhibition exploring grief and memory through abstract forms and muted palettes.",
-    img: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80",
+    id: 2, title: "Lata Mangeshkar ji", subtitle: "graphite pencils",
+    category: "Art" as const, year: "2025",
+    tags: ["Graphite pencils", "A2"],
+    desc: "A 16*23 inches pencil work made in 40 hours",
+    img: "/theatre/lata ji.jpg",
     video: null, link: "https://unsplash.com", large: false,
+    fit: true,
   },
   {
-    id: 3, title: "Roots & Routes", subtitle: "Brand Identity Design",
-    category: "Design" as const, year: "2024",
-    tags: ["Branding", "Typography", "Identity"],
-    desc: "Visual identity for a cultural festival celebrating regional storytelling traditions across India.",
-    img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    id: 3, title: "Sutradhar ( A national level theatre competition)", subtitle: " A play poster",
+    category: "Design" as const, year: "2025",
+    tags: ["Branding", "designing", "typography"],
+    desc: "Visual identity for a play in cultural theatre festival of India named SUTRADHAR",
+    img: "/theatre/samadhi.jpg",
     video: null, link: "https://unsplash.com", large: false,
+    fit: true,
   },
   {
-    id: 4, title: "Curtain Call", subtitle: "Ensemble Theatre",
-    category: "Theatre" as const, year: "2023",
-    tags: ["Direction", "Ensemble", "Original Script"],
-    desc: "An original ensemble piece about five strangers who meet backstage and discover they share the same story.",
-    img: "https://images.unsplash.com/photo-1503095396549-807759245b35?w=800&q=80",
-    video: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    id: 4, title: "Curtain Call", subtitle: "Anvaratt Theatre",
+    category: "Theatre" as const, year: "2025",
+    tags: ["Acting", "Moral", "thoughtful"],
+    desc: " The ending of a thoughtful play named  ['gaay ' (hindi) ] ",
+    img: "/theatre/gaay 1.png",
+    hoverVideo: "/theatre/gaay v 1.MOV",
+    video: null,
     link: "https://youtube.com", large: false,
+    maxDuration: 12,
   },
   {
     id: 5, title: "Golden Hour Series", subtitle: "Oil on Canvas",
@@ -156,7 +160,7 @@ export default function Work() {
               {p.youtubeHover ? (
                 <>
                   <div
-                    className="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-105 group-hover:opacity-0"
+                    className={`absolute inset-0 bg-center transition-all duration-700 group-hover:scale-105 group-hover:opacity-0 ${p.fit ? 'bg-contain bg-no-repeat' : 'bg-cover'}`}
                     style={{ backgroundImage: `url('${p.img}')` }}
                   />
                   <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-700">
@@ -175,10 +179,15 @@ export default function Work() {
                   playsInline
                   preload="auto"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  onTimeUpdate={(e) => {
+                    if (p.maxDuration && e.currentTarget.currentTime >= p.maxDuration) {
+                      e.currentTarget.currentTime = 0;
+                    }
+                  }}
                 />
               ) : (
                 <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                  className={`absolute inset-0 bg-center transition-transform duration-700 group-hover:scale-105 ${p.fit ? 'bg-contain bg-no-repeat' : 'bg-cover'}`}
                   style={{ backgroundImage: `url('${p.img}')` }}
                 />
               )}
@@ -212,7 +221,7 @@ export default function Work() {
 
                 {/* Bottom */}
                 <div className="space-y-2">
-                  <h3 className="font-serif text-display-md text-ivory leading-tight drop-shadow-lg">
+                  <h3 className="font-serif text-xl md:text-2xl text-ivory leading-tight drop-shadow-lg">
                     {p.title}
                   </h3>
                   <p className="font-sans text-xs text-ivory/50">{p.subtitle}</p>
