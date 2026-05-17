@@ -5,7 +5,7 @@ import TheatreHero from "@/components/theatre/TheatreHero";
 import PerformancesTimeline from "@/components/theatre/PerformancesTimeline";
 import CharacterGallery from "@/components/theatre/CharacterGallery";
 import BehindTheScenes from "@/components/theatre/BehindTheScenes";
-import HighlightProject from "@/components/theatre/HighlightProject";
+
 import TheatreFooter from "@/components/theatre/TheatreFooter";
 import ActDivider from "@/components/theatre/ActDivider";
 
@@ -22,7 +22,7 @@ export default function TheatrePage() {
         <ActDivider act="Act III" title="The Craft" />
         <BehindTheScenes />
         <ActDivider act="Act IV" title="The Masterwork" />
-        <HighlightProject />
+
       </main>
       <TheatreFooter />
     </div>

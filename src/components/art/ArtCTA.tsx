@@ -97,10 +97,10 @@ export default function ArtCTA() {
               Start My Commission
             </button>
             <a
-              href="mailto:manav@manavarora.com"
+              href="mailto:aroramanav787@gmail.com"
               className="font-sans text-[11px] tracking-[0.3em] uppercase text-white/30 hover:text-gold transition-colors duration-300"
             >
-              manav@manavarora.com
+              aroramanav787@gmail.com
             </a>
           </div>
         </div>

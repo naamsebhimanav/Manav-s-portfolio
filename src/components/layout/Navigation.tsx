@@ -12,7 +12,6 @@ const mainLinks = [
 ];
 
 const portfolioPages = [
-  { label: "About Me",   href: "/about" },
   { label: "Theatre",    href: "/theatre" },
   { label: "Art",        href: "/art" },
   { label: "Design",     href: "/design" },

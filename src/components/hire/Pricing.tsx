@@ -1,9 +1,8 @@
 "use client";
 
-import { MessageCircle, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 
-const WHATSAPP = "https://wa.me/919999999999?text=Hi%20Manav%2C%20I%27d%20like%20to%20discuss%20pricing.";
-const EMAIL    = "mailto:manav@manavarora.com?subject=Pricing%20Enquiry";
+const EMAIL    = "mailto:aroramanav787@gmail.com?subject=Pricing%20Enquiry";
 
 const tiers = [
   {
@@ -135,17 +134,6 @@ export default function Pricing() {
             Send a message and we&apos;ll figure it out together. No commitment required.
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: "12px" }}>
-            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="font-sans" style={{
-              display: "flex", alignItems: "center", gap: "8px",
-              background: "#25D366", color: "#ffffff",
-              fontWeight: 700, fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase",
-              padding: "14px 24px", textDecoration: "none", transition: "background 0.3s",
-            }}
-              onMouseEnter={e => e.currentTarget.style.background = "#1ebe5d"}
-              onMouseLeave={e => e.currentTarget.style.background = "#25D366"}
-            >
-              <MessageCircle size={14} /> WhatsApp
-            </a>
             <a href={EMAIL} className="font-sans" style={{
               display: "flex", alignItems: "center", gap: "8px",
               background: "none", color: "#c9a84c",

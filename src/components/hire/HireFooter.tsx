@@ -1,13 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, MessageCircle, Mail } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Mail } from "lucide-react";
 
-const WHATSAPP = "https://wa.me/919999999999?text=Hi%20Manav%2C%20I%27d%20like%20to%20work%20with%20you.";
-const EMAIL    = "mailto:manav@manavarora.com?subject=Let's%20Work%20Together";
+const EMAIL    = "mailto:aroramanav787@gmail.com?subject=Let's%20Work%20Together";
 
 const pages = [
-  { label: "About",    href: "/about" },
   { label: "Theatre",  href: "/theatre" },
   { label: "Art",      href: "/art" },
   { label: "Design",   href: "/design" },
@@ -45,17 +43,11 @@ export default function HireFooter() {
           <div>
             <p className="font-sans" style={{ fontSize: "9px", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(201,168,76,0.45)", marginBottom: "14px" }}>Quick Contact</p>
             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="font-sans" style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", color: "#25D366", textDecoration: "none", transition: "opacity 0.3s" }}
-                onMouseEnter={e => e.currentTarget.style.opacity = "0.75"}
-                onMouseLeave={e => e.currentTarget.style.opacity = "1"}
-              >
-                <MessageCircle size={13} /> WhatsApp
-              </a>
               <a href={EMAIL} className="font-sans" style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", color: "rgba(201,168,76,0.7)", textDecoration: "none", transition: "color 0.3s" }}
                 onMouseEnter={e => e.currentTarget.style.color = "#c9a84c"}
                 onMouseLeave={e => e.currentTarget.style.color = "rgba(201,168,76,0.7)"}
               >
-                <Mail size={13} /> manav@manavarora.com
+                <Mail size={13} /> aroramanav787@gmail.com
               </a>
             </div>
           </div>

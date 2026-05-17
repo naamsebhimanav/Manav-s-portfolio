@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Send, Mail, MapPin, Clock, Share2, Link2, Video, Globe } from "lucide-react";
+import { Send, Mail, MapPin, Clock } from "lucide-react";
+import { InstagramIcon, LinkedinIcon, YoutubeIcon, BehanceIcon } from "@/components/ui/SocialIcons";
 
 const projectTypes = [
   "Theatre Performance / Direction",
@@ -19,10 +20,10 @@ const hiringCards = [
 ];
 
 const socials = [
-  { icon: Share2, label: "Instagram", href: "https://www.instagram.com" },
-  { icon: Link2,  label: "LinkedIn",  href: "https://www.linkedin.com" },
-  { icon: Video,  label: "YouTube",   href: "https://www.youtube.com" },
-  { icon: Globe,  label: "Behance",   href: "https://www.behance.net" },
+  { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/naamsebhimanav/?hl=en" },
+  { icon: LinkedinIcon,  label: "LinkedIn",  href: "https://www.linkedin.com/in/manav-arora-2780ba319" },
+  { icon: YoutubeIcon,   label: "YouTube",   href: "https://www.youtube.com/@Naamsebhimanav" },
+  { icon: BehanceIcon,   label: "Behance",   href: "https://www.behance.net/manavarora17" },
 ];
 
 export default function HireMe() {
@@ -99,10 +100,10 @@ export default function HireMe() {
               Hire Me
             </a>
             <a
-              href="mailto:manav@manavarora.com"
+              href="mailto:aroramanav787@gmail.com"
               className="font-sans text-[11px] tracking-[0.3em] uppercase text-ivory/40 hover:text-gold transition-colors duration-300"
             >
-              manav@manavarora.com
+              aroramanav787@gmail.com
             </a>
           </div>
         </div>
@@ -131,7 +132,7 @@ export default function HireMe() {
             {/* Contact details */}
             <div className="space-y-5">
               {[
-                { icon: Mail,    label: "Email",       value: "manav@manavarora.com", href: "mailto:manav@manavarora.com" },
+                { icon: Mail,    label: "Email",       value: "aroramanav787@gmail.com", href: "mailto:aroramanav787@gmail.com" },
                 { icon: MapPin,  label: "Based in",    value: "India",                href: null },
                 { icon: Clock,   label: "Availability",value: "Open for 2025 projects", href: null },
               ].map((item) => (

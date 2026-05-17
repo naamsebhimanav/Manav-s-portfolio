@@ -1,25 +1,7 @@
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import { Mail, ArrowRight } from "lucide-react";
-
-const Instagram = ({ size = 24, className = "" }: { size?: number, className?: string }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-  </svg>
-);
+import { InstagramIcon, LinkedinIcon, YoutubeIcon, BehanceIcon } from "@/components/ui/SocialIcons";
 
 
 export const metadata = {
@@ -56,21 +38,43 @@ export default function ContactPage() {
             <div className="space-y-8">
               <div>
                 <p className="text-[10px] tracking-[0.3em] uppercase text-gold/60 mb-3">Email</p>
-                <a href="mailto:manav@manavarora.com" className="flex items-center gap-4 text-ivory/70 hover:text-gold transition-colors duration-300 group w-fit">
+                <a href="mailto:aroramanav787@gmail.com" className="flex items-center gap-4 text-ivory/70 hover:text-gold transition-colors duration-300 group w-fit">
                   <span className="w-12 h-12 border border-white/10 group-hover:border-gold/40 flex items-center justify-center transition-colors">
                     <Mail size={18} className="text-ivory/50 group-hover:text-gold" />
                   </span>
-                  <span className="text-sm tracking-wide">manav@manavarora.com</span>
+                  <span className="text-sm tracking-wide">aroramanav787@gmail.com</span>
                 </a>
               </div>
 
-              <div>
+              <div className="space-y-4">
                 <p className="text-[10px] tracking-[0.3em] uppercase text-gold/60 mb-3">Social</p>
-                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-ivory/70 hover:text-gold transition-colors duration-300 group w-fit">
+                
+                <a href="https://www.instagram.com/naamsebhimanav/?hl=en" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-ivory/70 hover:text-gold transition-colors duration-300 group w-fit">
                   <span className="w-12 h-12 border border-white/10 group-hover:border-gold/40 flex items-center justify-center transition-colors">
-                    <Instagram size={18} className="text-ivory/50 group-hover:text-gold" />
+                    <InstagramIcon size={18} className="text-ivory/50 group-hover:text-gold" />
                   </span>
                   <span className="text-sm tracking-wide">Instagram</span>
+                </a>
+
+                <a href="https://www.linkedin.com/in/manav-arora-2780ba319" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-ivory/70 hover:text-gold transition-colors duration-300 group w-fit">
+                  <span className="w-12 h-12 border border-white/10 group-hover:border-gold/40 flex items-center justify-center transition-colors">
+                    <LinkedinIcon size={18} className="text-ivory/50 group-hover:text-gold" />
+                  </span>
+                  <span className="text-sm tracking-wide">LinkedIn</span>
+                </a>
+
+                <a href="https://www.youtube.com/@Naamsebhimanav" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-ivory/70 hover:text-gold transition-colors duration-300 group w-fit">
+                  <span className="w-12 h-12 border border-white/10 group-hover:border-gold/40 flex items-center justify-center transition-colors">
+                    <YoutubeIcon size={18} className="text-ivory/50 group-hover:text-gold" />
+                  </span>
+                  <span className="text-sm tracking-wide">YouTube</span>
+                </a>
+
+                <a href="https://www.behance.net/manavarora17" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-ivory/70 hover:text-gold transition-colors duration-300 group w-fit">
+                  <span className="w-12 h-12 border border-white/10 group-hover:border-gold/40 flex items-center justify-center transition-colors">
+                    <BehanceIcon size={18} className="text-ivory/50 group-hover:text-gold" />
+                  </span>
+                  <span className="text-sm tracking-wide">Behance</span>
                 </a>
               </div>
             </div>

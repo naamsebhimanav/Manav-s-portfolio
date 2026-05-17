@@ -13,8 +13,9 @@ export default function TheatreHero() {
       <div
         className="absolute inset-0"
         style={{
-          background:
-            "linear-gradient(180deg, #000000 0%, #050505 40%, #0a0605 70%, #050505 100%)",
+          background: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/theatre/lm 3.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       />
 
@@ -64,14 +65,7 @@ export default function TheatreHero() {
         }}
       />
 
-      {/* ── Film grain ── */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-25 mix-blend-overlay"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")`,
-          backgroundSize: "256px 256px",
-        }}
-      />
+      {/* ── Film grain removed due to performance issues ── */}
 
       {/* ── Curtain side panels ── */}
       <div
@@ -169,10 +163,10 @@ export default function TheatreHero() {
         {/* Stats row */}
         <div className="flex items-center justify-center gap-10">
           {[
-            { num: "30+",  label: "Performances" },
-            { num: "8+",   label: "Competitions" },
-            { num: "15+",  label: "Characters" },
-            { num: "5",    label: "Years on Stage" },
+            { num: "15+",  label: "Performances" },
+            { num: "5+",   label: "Competitions" },
+            { num: "10+",  label: "Characters" },
+            { num: "3",    label: "Years on Stage" },
           ].map((s) => (
             <div key={s.label} className="text-center">
               <p className="font-serif text-2xl text-gold font-light">{s.num}</p>

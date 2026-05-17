@@ -4,8 +4,9 @@ import Hero       from "@/components/sections/Hero";
 import About      from "@/components/sections/About";
 import Work       from "@/components/sections/Work";
 import Achievements from "@/components/sections/Process";
-import SocialProof  from "@/components/sections/Testimonials";
+
 import HireMe       from "@/components/sections/Contact";
+import NotebookPage from "@/components/ui/NotebookPage";
 
 export default function Home() {
   return (
@@ -13,11 +14,10 @@ export default function Home() {
       <Navigation />
       <main>
         <Hero />
-        <About />
-        <Work />
-        <Achievements />
-        <SocialProof />
-        <HireMe />
+        <NotebookPage><About /></NotebookPage>
+        <NotebookPage><Work /></NotebookPage>
+        <NotebookPage><Achievements /></NotebookPage>
+        <NotebookPage><HireMe /></NotebookPage>
       </main>
       <Footer />
     </div>

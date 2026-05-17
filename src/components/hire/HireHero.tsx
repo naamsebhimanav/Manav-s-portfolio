@@ -1,9 +1,8 @@
 "use client";
 
-import { MessageCircle, Mail, ArrowDown } from "lucide-react";
+import { Mail, ArrowDown } from "lucide-react";
 
-const WHATSAPP = "https://wa.me/919999999999?text=Hi%20Manav%2C%20I%27d%20like%20to%20work%20with%20you.";
-const EMAIL    = "mailto:manav@manavarora.com?subject=Let's%20Work%20Together";
+const EMAIL    = "mailto:aroramanav787@gmail.com?subject=Let's%20Work%20Together";
 
 export default function HireHero() {
   const go = (id: string) => document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
@@ -17,8 +16,7 @@ export default function HireHero() {
       {/* Vignette */}
       <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 100% 100% at 50% 50%, transparent 25%, rgba(5,5,5,0.92) 100%)", pointerEvents: "none" }} />
 
-      {/* Grain */}
-      <div style={{ position: "absolute", inset: 0, backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")`, backgroundSize: "256px 256px", opacity: 0.2, mixBlendMode: "overlay", pointerEvents: "none" }} />
+      {/* Grain removed due to performance issues */}
 
       {/* Curtain sides */}
       <div style={{ position: "absolute", top: 0, left: 0, width: "100px", height: "100%", background: "linear-gradient(90deg, rgba(5,5,5,0.85) 0%, transparent 100%)", pointerEvents: "none" }} />
@@ -63,17 +61,6 @@ export default function HireHero() {
 
         {/* Primary CTAs */}
         <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: "12px", marginBottom: "48px" }}>
-          <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="font-sans" style={{
-            display: "flex", alignItems: "center", gap: "10px",
-            background: "#25D366", color: "#ffffff",
-            fontWeight: 700, fontSize: "12px", letterSpacing: "0.2em", textTransform: "uppercase",
-            padding: "16px 28px", textDecoration: "none", transition: "background 0.3s",
-          }}
-            onMouseEnter={e => e.currentTarget.style.background = "#1ebe5d"}
-            onMouseLeave={e => e.currentTarget.style.background = "#25D366"}
-          >
-            <MessageCircle size={16} /> WhatsApp Me
-          </a>
           <a href={EMAIL} className="font-sans" style={{
             display: "flex", alignItems: "center", gap: "10px",
             background: "none", color: "#c9a84c",

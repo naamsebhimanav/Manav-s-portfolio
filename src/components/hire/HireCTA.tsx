@@ -1,10 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { MessageCircle, Mail, Send, Clock, CheckCircle } from "lucide-react";
+import { Mail, Send, Clock, CheckCircle } from "lucide-react";
 
-const WHATSAPP = "https://wa.me/919999999999?text=Hi%20Manav%2C%20I%27d%20like%20to%20work%20with%20you.";
-const EMAIL    = "mailto:manav@manavarora.com?subject=Let's%20Work%20Together";
+const EMAIL    = "mailto:aroramanav787@gmail.com?subject=Let's%20Work%20Together";
 
 const serviceTypes = [
   "Theatre Performance",
@@ -83,19 +82,6 @@ export default function HireCTA() {
 
           {/* Quick contact buttons */}
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: "12px", marginBottom: "32px" }}>
-            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="font-sans" style={{
-              display: "flex", alignItems: "center", gap: "10px",
-              background: "#25D366", color: "#ffffff",
-              fontWeight: 700, fontSize: "13px", letterSpacing: "0.15em", textTransform: "uppercase",
-              padding: "18px 32px", textDecoration: "none", transition: "all 0.3s",
-              boxShadow: "0 0 40px rgba(37,211,102,0.2)",
-            }}
-              onMouseEnter={e => { e.currentTarget.style.background = "#1ebe5d"; e.currentTarget.style.boxShadow = "0 0 60px rgba(37,211,102,0.35)"; }}
-              onMouseLeave={e => { e.currentTarget.style.background = "#25D366"; e.currentTarget.style.boxShadow = "0 0 40px rgba(37,211,102,0.2)"; }}
-            >
-              <MessageCircle size={18} />
-              WhatsApp Me Now
-            </a>
             <a href={EMAIL} className="font-sans" style={{
               display: "flex", alignItems: "center", gap: "10px",
               background: "none", color: "#c9a84c",
@@ -116,7 +102,6 @@ export default function HireCTA() {
             {[
               { icon: Clock,        text: "Responds within 24 hours" },
               { icon: CheckCircle,  text: "No commitment to enquire" },
-              { icon: MessageCircle, text: "WhatsApp preferred" },
             ].map(t => (
               <div key={t.text} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                 <t.icon size={13} style={{ color: "rgba(201,168,76,0.5)" }} />
@@ -142,8 +127,7 @@ export default function HireCTA() {
             {/* Contact details */}
             <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
               {[
-                { label: "WhatsApp",     value: "+91 99999 99999",       href: WHATSAPP },
-                { label: "Email",        value: "manav@manavarora.com",  href: EMAIL },
+                { label: "Email",        value: "aroramanav787@gmail.com",  href: EMAIL },
                 { label: "Based in",     value: "India",                 href: null },
                 { label: "Availability", value: "Open for 2025 projects", href: null },
               ].map(item => (
@@ -174,9 +158,6 @@ export default function HireCTA() {
                   I&apos;ll get back to you within 24 hours. Looking forward to working together.
                 </p>
                 <div style={{ display: "flex", gap: "12px", marginTop: "8px" }}>
-                  <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="font-sans" style={{ display: "flex", alignItems: "center", gap: "8px", background: "#25D366", color: "#fff", fontWeight: 700, fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", padding: "12px 20px", textDecoration: "none" }}>
-                    <MessageCircle size={13} /> WhatsApp
-                  </a>
                   <button onClick={() => { setSent(false); setForm({ name: "", email: "", phone: "", service: "", message: "" }); }} className="font-sans" style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(201,168,76,0.6)", background: "none", border: "1px solid rgba(201,168,76,0.3)", padding: "12px 20px", cursor: "pointer" }}>
                     Send Another
                   </button>
@@ -197,24 +178,14 @@ export default function HireCTA() {
                 </div>
 
                 {/* Email + Phone */}
-                <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: "20px" }}>
-                  <div>
-                    <label className="font-sans" style={{ fontSize: "9px", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(201,168,76,0.5)", display: "block", marginBottom: "8px" }}>Email *</label>
-                    <input type="email" placeholder="your@email.com" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })}
-                      style={{ ...inputStyle, borderBottomColor: errors.email ? "rgba(248,113,113,0.5)" : "rgba(245,240,232,0.1)" }}
-                      onFocus={e => e.currentTarget.style.borderBottomColor = "rgba(201,168,76,0.5)"}
-                      onBlur={e => e.currentTarget.style.borderBottomColor = errors.email ? "rgba(248,113,113,0.5)" : "rgba(245,240,232,0.1)"}
-                    />
-                    {errors.email && <p className="font-sans" style={{ fontSize: "10px", color: "rgba(248,113,113,0.7)", marginTop: "4px" }}>{errors.email}</p>}
-                  </div>
-                  <div>
-                    <label className="font-sans" style={{ fontSize: "9px", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(201,168,76,0.5)", display: "block", marginBottom: "8px" }}>WhatsApp (optional)</label>
-                    <input type="tel" placeholder="+91 XXXXX XXXXX" value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })}
-                      style={inputStyle}
-                      onFocus={e => e.currentTarget.style.borderBottomColor = "rgba(201,168,76,0.5)"}
-                      onBlur={e => e.currentTarget.style.borderBottomColor = "rgba(245,240,232,0.1)"}
-                    />
-                  </div>
+                <div>
+                  <label className="font-sans" style={{ fontSize: "9px", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(201,168,76,0.5)", display: "block", marginBottom: "8px" }}>Email *</label>
+                  <input type="email" placeholder="your@email.com" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })}
+                    style={{ ...inputStyle, borderBottomColor: errors.email ? "rgba(248,113,113,0.5)" : "rgba(245,240,232,0.1)" }}
+                    onFocus={e => e.currentTarget.style.borderBottomColor = "rgba(201,168,76,0.5)"}
+                    onBlur={e => e.currentTarget.style.borderBottomColor = errors.email ? "rgba(248,113,113,0.5)" : "rgba(245,240,232,0.1)"}
+                  />
+                  {errors.email && <p className="font-sans" style={{ fontSize: "10px", color: "rgba(248,113,113,0.7)", marginTop: "4px" }}>{errors.email}</p>}
                 </div>
 
                 {/* Service */}
@@ -263,11 +234,7 @@ export default function HireCTA() {
                   {loading ? "Sending..." : "Send Message"}
                 </button>
 
-                <p className="font-sans" style={{ fontSize: "10px", color: "rgba(245,240,232,0.25)", textAlign: "center", lineHeight: 1.6 }}>
-                  Or reach me directly on{" "}
-                  <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" style={{ color: "#25D366", textDecoration: "none" }}>WhatsApp</a>
-                  {" "}for a faster response.
-                </p>
+
               </form>
             )}
           </div>

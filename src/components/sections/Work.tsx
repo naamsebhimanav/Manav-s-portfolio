@@ -52,19 +52,20 @@ const projects: Project[] = [
     maxDuration: 12,
   },
   {
-    id: 5, title: "Golden Hour Series", subtitle: "Oil on Canvas",
-    category: "Art" as const, year: "2023",
+    id: 5, title: "Customized painting", subtitle: "Oil on Canvas",
+    category: "Art" as const, year: "2025",
     tags: ["Oil Painting", "Series", "Portrait"],
-    desc: "A series of 8 portraits capturing the emotional weight of ordinary moments in extraordinary light.",
+    desc: "gift your loved ones a customized painting of their own from us",
     img: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&q=80",
+    hoverVideo: "/content/oil.mp4.mp4",
     video: null, link: "https://unsplash.com", large: false,
   },
   {
-    id: 6, title: "Ink & Intention", subtitle: "Poster Design Series",
-    category: "Design" as const, year: "2023",
-    tags: ["Poster", "Typography", "Print"],
-    desc: "A series of 12 typographic posters for theatre productions, blending hand-lettering with digital composition.",
-    img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80",
+    id: 6, title: "Landing page for an app (UI)", subtitle: "UI/UX",
+    category: "Design" as const, year: "2025",
+    tags: ["User Interface", "User Experience"],
+    desc: "",
+    img: "/design/Scene.jpg",
     video: null, link: "https://unsplash.com", large: false,
   },
 ];
@@ -178,7 +179,7 @@ export default function Work() {
                   loop
                   playsInline
                   preload="auto"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
                   onTimeUpdate={(e) => {
                     if (p.maxDuration && e.currentTarget.currentTime >= p.maxDuration) {
                       e.currentTarget.currentTime = 0;

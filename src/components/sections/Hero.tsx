@@ -1,6 +1,7 @@
 "use client";
 
-import { ArrowDown, Play } from "lucide-react";
+import { ArrowDown } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Hero() {
   const scrollTo = (id: string) => {
@@ -14,8 +15,8 @@ export default function Hero() {
     >
       {/* ── Background Image ── */}
       <div
-        className="absolute inset-0 bg-contain bg-[center_bottom] bg-no-repeat opacity-80 grayscale-[15%]"
-        style={{ backgroundImage: "url('/hero-bg-user.png')" }}
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-90"
+        style={{ backgroundImage: "url('/hero_gold_nebula_bg.png')" }}
       />
       {/* ── Dark overlay for contrast ── */}
       <div className="absolute inset-0 bg-gradient-to-b from-void/10 via-void/60 to-void pointer-events-none" />
@@ -47,14 +48,7 @@ export default function Hero() {
         }}
       />
 
-      {/* ── Film grain ── */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-30 mix-blend-overlay"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")`,
-          backgroundSize: "256px 256px",
-        }}
-      />
+      {/* ── Film grain removed due to performance issues ── */}
 
       {/* ── Stage floor line ── */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
@@ -77,63 +71,57 @@ export default function Hero() {
 
       {/* ── Main content ── */}
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto pt-20">
-        {/* Tag line */}
-        <div className="flex items-center justify-center gap-4 mb-8">
-          <div className="h-px w-10 bg-gradient-to-r from-transparent to-gold/60" />
-          <span className="font-sans text-[10px] tracking-[0.5em] uppercase text-gold/70">
+        {/* Descriptor */}
+        <div className="flex items-center justify-center gap-4 mb-6">
+          <div className="h-px w-10 bg-gradient-to-r from-transparent to-white/50" />
+          <span className="font-sans text-[11px] tracking-[0.6em] uppercase text-white/70">
             Performer · Visual Artist · Storyteller
           </span>
-          <div className="h-px w-10 bg-gradient-to-l from-transparent to-gold/60" />
+          <div className="h-px w-10 bg-gradient-to-l from-transparent to-white/50" />
         </div>
 
         {/* Name */}
-        <h1 className="font-serif font-light text-display-2xl text-ivory leading-[0.92] tracking-tight mb-4">
+        <motion.h1
+          initial={{ opacity: 0, filter: "blur(15px)", y: 40 }}
+          animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+          transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+          className="font-serif font-light text-[15vw] md:text-[10vw] text-white leading-[0.85] tracking-tight mb-6"
+        >
           Manav Arora
-        </h1>
+        </motion.h1>
 
-        {/* Subtext */}
-        <p className="font-serif italic text-display-md text-gold-gradient mb-4">
-          Where stories breathe through
+        {/* Tagline */}
+        <p className="font-serif italic text-display-md text-white/90 mb-2 leading-relaxed max-w-3xl mx-auto">
+          Where stories breathe through performance and visuals
         </p>
-        <p className="font-serif italic text-display-md text-gold-gradient mb-10">
-          performance and visuals
+
+        {/* Supporting Line */}
+        <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-white/40 mb-12">
+          Blending performance, storytelling, and visual artistry
         </p>
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <button
             onClick={() => scrollTo("#work")}
-            className="group flex items-center gap-3 bg-gold text-void font-sans font-semibold text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold-light transition-colors duration-300"
+            className="group flex items-center gap-3 bg-gold text-void font-sans font-semibold text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold-light hover:scale-[1.03] transition-all duration-300"
           >
-            <Play size={14} className="group-hover:scale-110 transition-transform" />
-            View Work
+            Explore My Work <span className="group-hover:translate-x-1 transition-transform">→</span>
           </button>
           <button
             onClick={() => scrollTo("#contact")}
-            className="flex items-center gap-3 border border-gold/50 text-gold font-sans font-medium text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold/10 hover:border-gold transition-all duration-300"
+            className="flex items-center gap-3 border border-gold/50 text-gold font-sans font-medium text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold/10 hover:border-gold hover:scale-[1.03] transition-all duration-300"
           >
-            Hire Me
+            Let's Collaborate
           </button>
         </div>
 
-        {/* Stats */}
-        <div className="flex items-center justify-center gap-10 mb-16">
-          {[
-            { num: "50K+", label: "Instagram" },
-            { num: "30+",  label: "Performances" },
-            { num: "10+",  label: "Awards" },
-          ].map((s) => (
-            <div key={s.label} className="text-center">
-              <p className="font-serif text-2xl text-gold font-light">{s.num}</p>
-              <p className="font-sans text-[9px] tracking-[0.3em] uppercase text-smoke mt-1">{s.label}</p>
-            </div>
-          ))}
-        </div>
+
       </div>
 
       {/* ── Scroll indicator ── */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <span className="font-sans text-[9px] tracking-[0.4em] uppercase text-smoke">Scroll</span>
+        <span className="font-sans text-[10px] tracking-[0.4em] uppercase text-gold/70 animate-pulse">Scroll to explore</span>
         <div className="w-px h-12 bg-gradient-to-b from-gold/50 to-transparent relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1/2 bg-gold animate-scroll-line" />
         </div>

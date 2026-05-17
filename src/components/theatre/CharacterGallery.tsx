@@ -16,63 +16,63 @@ interface Character {
 
 const characters: Character[] = [
   {
-    name: "The Shape-Shifter",
-    play: "Bahurupiya",
-    year: "2024",
-    description: "Seven faces, one soul. A character who questions whether identity is fixed or fluid — and finds the answer terrifying.",
-    emotion: "Existential Dread · Wonder · Liberation",
-    costume: "Layered fabrics, each representing a different persona",
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80",
+    name: "Mumtaz Bhai",
+    play: "Gaay",
+    year: "2025",
+    description: "",
+    emotion: "",
+    costume: "",
+    img: "/theatre/gaay 1.png",
     accent: "rgba(201,168,76,0.2)",
   },
   {
-    name: "Ashwatthama",
-    play: "Andha Yug",
-    year: "2024",
-    description: "The immortal warrior cursed to wander. Rage, grief, and the unbearable weight of surviving a war you helped destroy.",
-    emotion: "Rage · Grief · Immortal Loneliness",
-    costume: "Battle-worn armour, ash-smeared face, matted hair",
-    img: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=600&q=80",
+    name: "narrator",
+    play: "Gunvanti",
+    year: "2026",
+    description: "",
+    emotion: "",
+    costume: "",
+    img: "/theatre/gun 2.png",
     accent: "rgba(180,60,40,0.2)",
   },
   {
-    name: "Vladimir",
-    play: "Waiting for Godot",
-    year: "2023",
-    description: "Waiting. Always waiting. The comedy of existence played out in a single pair of boots and an endless conversation.",
-    emotion: "Absurd Hope · Quiet Despair · Dark Humour",
-    costume: "Worn suit, bowler hat, oversized shoes",
-    img: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80",
+    name: "bade bhai",
+    play: "bade bhaisahab",
+    year: "2025",
+    description: "",
+    emotion: "",
+    costume: "",
+    img: "/theatre/bb%201.png",
     accent: "rgba(100,100,180,0.2)",
   },
   {
-    name: "Prince Salim",
-    play: "Mughal-E-Azam",
-    year: "2022",
-    description: "A prince torn between love and empire. Every scene a battle between the heart and the throne.",
-    emotion: "Passionate Love · Defiance · Tragic Nobility",
-    costume: "Royal Mughal attire, jewelled turban, silk robes",
-    img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=80",
+    name: "narrator",
+    play: "the journey of birsa munda",
+    year: "2024",
+    description: "",
+    emotion: "",
+    costume: "",
+    img: "/theatre/iit indore.jpg",
     accent: "rgba(201,168,76,0.15)",
   },
   {
-    name: "Devdas",
-    play: "Devdas — A Retelling",
-    year: "2022",
-    description: "Self-destruction as poetry. A modern Devdas navigating heartbreak in a city that doesn't care.",
-    emotion: "Heartbreak · Self-Destruction · Longing",
-    costume: "Dishevelled kurta, hollow eyes, cigarette",
-    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80",
+    name: "narrator and khuda",
+    play: "laila majnu",
+    year: "2025",
+    description: "",
+    emotion: "",
+    costume: "",
+    img: "/theatre/lm 1.jpg",
     accent: "rgba(80,80,120,0.2)",
   },
   {
-    name: "The Narrator",
-    play: "Ek Tha Raja",
-    year: "2023",
-    description: "The storyteller who becomes the story. A folk narrator who slips between worlds — observer and participant.",
-    emotion: "Wisdom · Mischief · Ancient Knowing",
-    costume: "Folk dhoti, painted face, traditional jewellery",
-    img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80",
+    name: "lead hero",
+    play: "usne kaha tha",
+    year: "2025",
+    description: "",
+    emotion: "",
+    costume: "",
+    img: "/theatre/uts 4.mov",
     accent: "rgba(201,168,76,0.18)",
   },
 ];
@@ -119,11 +119,23 @@ export default function CharacterGallery() {
               onMouseLeave={() => setHovered(null)}
               onClick={() => setLightbox(i)}
             >
-              {/* Image */}
-              <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                style={{ backgroundImage: `url('${c.img}')` }}
-              />
+              {/* Image or Video */}
+              {c.img.toLowerCase().endsWith('.mov') || c.img.toLowerCase().endsWith('.mp4') ? (
+                <video
+                  src={c.img}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  onLoadedMetadata={(e) => e.currentTarget.playbackRate = 0.5}
+                />
+              ) : (
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                  style={{ backgroundImage: `url('${c.img}')` }}
+                />
+              )}
 
               {/* Base overlay */}
               <div className="absolute inset-0 bg-void/55 group-hover:bg-void/30 transition-colors duration-500" />
@@ -154,11 +166,7 @@ export default function CharacterGallery() {
                   <h3 className="font-serif text-lg md:text-xl text-ivory leading-tight mb-2">{c.name}</h3>
                 </div>
 
-                {/* Revealed on hover */}
-                <div className="max-h-0 group-hover:max-h-32 overflow-hidden transition-all duration-500">
-                  <p className="font-sans text-[10px] text-ivory/55 leading-relaxed mb-2">{c.description}</p>
-                  <p className="font-sans text-[9px] tracking-wide text-gold/50 italic">{c.emotion}</p>
-                </div>
+                {/* Removed description and emotion on hover */}
               </div>
 
               {/* Bottom gold line */}
@@ -184,12 +192,24 @@ export default function CharacterGallery() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="grid grid-cols-1 md:grid-cols-2">
-              {/* Image */}
               <div className="relative aspect-[3/4] md:aspect-auto">
-                <div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url('${characters[lightbox].img}')` }}
-                />
+                {/* Image or Video */}
+                {characters[lightbox].img.toLowerCase().endsWith('.mov') || characters[lightbox].img.toLowerCase().endsWith('.mp4') ? (
+                  <video
+                    src={characters[lightbox].img}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    onLoadedMetadata={(e) => e.currentTarget.playbackRate = 0.5}
+                  />
+                ) : (
+                  <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: `url('${characters[lightbox].img}')` }}
+                  />
+                )}
                 <div className="absolute inset-0 bg-void/30" />
                 {/* Spotlight */}
                 <div
@@ -209,17 +229,7 @@ export default function CharacterGallery() {
 
                 <div className="h-px w-12 bg-gold/30" />
 
-                <p className="font-sans text-sm text-ivory/55 leading-relaxed">{characters[lightbox].description}</p>
-
-                <div className="space-y-2">
-                  <p className="font-sans text-[9px] tracking-[0.3em] uppercase text-gold/40">Emotional Core</p>
-                  <p className="font-serif italic text-sm text-ivory/50">{characters[lightbox].emotion}</p>
-                </div>
-
-                <div className="space-y-2">
-                  <p className="font-sans text-[9px] tracking-[0.3em] uppercase text-gold/40">Costume & Look</p>
-                  <p className="font-sans text-xs text-ivory/40 leading-relaxed">{characters[lightbox].costume}</p>
-                </div>
+                {/* Removed description, emotion, and costume */}
 
                 {/* Nav */}
                 <div className="flex items-center gap-4 pt-2">

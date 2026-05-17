@@ -8,7 +8,7 @@ const steps = [
     icon: MessageCircle,
     title: "Contact",
     subtitle: "You reach out",
-    description: "Send a WhatsApp message or email with a brief description of what you need. No lengthy forms, no waiting rooms. Just a conversation.",
+    description: "Send an email with a brief description of what you need. No lengthy forms, no waiting rooms. Just a conversation.",
     detail: "Response within 24 hours, guaranteed.",
     duration: "Day 1",
     accent: "#c9a84c",

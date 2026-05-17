@@ -1,13 +1,13 @@
 "use client";
 
-import { Link2, Share2, Video, Globe } from "lucide-react";
+import { InstagramIcon, LinkedinIcon, YoutubeIcon, BehanceIcon } from "@/components/ui/SocialIcons";
 
 const navLinks = ["About", "Work", "Achievements", "Social", "Contact"];
 const socials = [
-  { icon: Share2, label: "Instagram", href: "https://www.instagram.com" },
-  { icon: Link2,  label: "LinkedIn",  href: "https://www.linkedin.com" },
-  { icon: Video,  label: "YouTube",   href: "https://www.youtube.com" },
-  { icon: Globe,  label: "Behance",   href: "https://www.behance.net" },
+  { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/naamsebhimanav/?hl=en" },
+  { icon: LinkedinIcon,  label: "LinkedIn",  href: "https://www.linkedin.com/in/manav-arora-2780ba319" },
+  { icon: YoutubeIcon,   label: "YouTube",   href: "https://www.youtube.com/@Naamsebhimanav" },
+  { icon: BehanceIcon,   label: "Behance",   href: "https://www.behance.net/manavarora17" },
 ];
 
 export default function Footer() {
@@ -72,10 +72,10 @@ export default function Footer() {
             <p className="font-sans text-[9px] tracking-[0.3em] uppercase text-gold/50">Contact</p>
             <div className="space-y-2">
               <a
-                href="mailto:manav@manavarora.com"
+                href="mailto:aroramanav787@gmail.com"
                 className="font-sans text-xs text-ivory/40 hover:text-gold transition-colors duration-300 block gold-line-hover w-fit"
               >
-                manav@manavarora.com
+                aroramanav787@gmail.com
               </a>
               <p className="font-sans text-xs text-ivory/30">India</p>
               <p className="font-sans text-xs text-gold/50">Open for 2025 projects</p>
