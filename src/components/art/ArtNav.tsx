@@ -49,10 +49,12 @@ export default function ArtNav() {
           </Link>
 
           {/* Centre wordmark */}
-          <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-3">
-            <div className="w-px h-3 bg-gold/30" />
-            <span className="font-serif text-sm tracking-[0.3em] text-white/70 italic">Art & Portraits</span>
-            <div className="w-px h-3 bg-gold/30" />
+          <div className="flex-1 flex justify-center">
+            <div className="flex items-center gap-3">
+              <div className="w-px h-3 bg-gold/30" />
+              <span className="font-serif text-sm tracking-[0.3em] text-white/70 italic">Art & Portraits</span>
+              <div className="w-px h-3 bg-gold/30" />
+            </div>
           </div>
 
           {/* Desktop nav */}

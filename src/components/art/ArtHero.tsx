@@ -37,18 +37,13 @@ export default function ArtHero() {
 
       {/* ── Grain removed due to performance issues ── */}
 
-      {/* ── Floating artwork preview ── */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        {/* Large canvas frame */}
-        <div className="relative w-[340px] h-[420px] opacity-20">
-          <div className="absolute inset-0 border border-gold/30" />
-          <div className="absolute inset-3 border border-gold/15" />
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=600&q=80')" }}
-          />
-          <div className="absolute inset-0 bg-black/60" />
-        </div>
+      {/* ── Full background artwork ── */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/design/ganeshji.png')" }}
+        />
+        <div className="absolute inset-0 bg-black/85" />
       </div>
 
       {/* ── Corner brackets ── */}
@@ -102,7 +97,7 @@ export default function ArtHero() {
         <div className="flex items-center justify-center gap-10">
           {[
             { num: "120+", label: "Artworks" },
-            { num: "60+",  label: "Commissions" },
+            { num: "15+",  label: "Commissions" },
             { num: "5–7",  label: "Days Delivery" },
             { num: "100%", label: "Satisfaction" },
           ].map((s) => (

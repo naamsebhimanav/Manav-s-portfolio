@@ -18,9 +18,9 @@ const categories = [
       "Pastel — soft, atmospheric warmth",
     ],
     works: [
-      "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&q=80",
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80",
+      "/theatre/lata ji.jpg",
+      "/design/irrfan1.jpg",
+      "/design/emma.png",
     ],
     count: "45+ works",
     accent: "rgba(201,168,76,0.12)",
@@ -39,33 +39,12 @@ const categories = [
       "Shipped with certificate of authenticity",
     ],
     works: [
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80",
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80",
-      "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400&q=80",
+      "/design/rk.png",
+      "/design/batman.png",
+      "/design/ramji.jpg",
     ],
     count: "60+ commissions",
     accent: "rgba(201,168,76,0.1)",
-  },
-  {
-    id: "experimental",
-    icon: Sparkles,
-    label: "Experimental Art",
-    tagline: "Where rules dissolve",
-    description:
-      "Mixed media, abstract, and conceptual works that push beyond representation. These pieces are explorations — of material, of emotion, of what happens when you let go of the plan.",
-    details: [
-      "Mixed media — ink, resin, gold leaf",
-      "Abstract expressionism",
-      "Collage and assemblage",
-      "Digital-physical hybrid works",
-    ],
-    works: [
-      "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&q=80",
-      "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&q=80",
-      "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&q=80",
-    ],
-    count: "30+ works",
-    accent: "rgba(180,120,60,0.1)",
   },
 ];
 

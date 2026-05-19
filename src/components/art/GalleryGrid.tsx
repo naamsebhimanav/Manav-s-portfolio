@@ -8,101 +8,99 @@ interface Artwork {
   title: string;
   medium: string;
   year: string;
-  category: "portrait" | "painting" | "experimental";
+  category: "portrait" | "painting";
   size: "large" | "tall" | "wide" | "small";
   img: string;
   description: string;
   dimensions: string;
+  video?: string;
+  lightboxImage?: string;
 }
 
 const artworks: Artwork[] = [
   {
     id: 1,
-    title: "Silence Between Words",
-    medium: "Oil on Canvas",
-    year: "2024",
+    title: "Lata Mangeshkar Ji",
+    medium: "Graphite pencils",
+    year: "2025",
     category: "portrait",
     size: "large",
-    img: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=900&q=85",
-    description: "A study in restraint. The subject's gaze holds everything unsaid — grief, hope, and the particular exhaustion of being deeply known.",
-    dimensions: "24 × 36 in",
+    img: "/theatre/lata ji.jpg",
+    description: "A timeless tribute in graphite, this pencil portrait of Lata Mangeshkar ji captures the soul of India's Nightingale—where every stroke echoes her grace, humility, and immortal voice.",
+    dimensions: "16 x 23 in",
   },
   {
     id: 2,
-    title: "Golden Hour, Chandigarh",
-    medium: "Acrylic on Canvas",
-    year: "2024",
+    title: "Oil Portrait",
+    medium: "Oil on Canvas",
+    year: "2026",
     category: "painting",
     size: "tall",
     img: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=700&q=85",
-    description: "The city at dusk — warm ochres bleeding into violet. A love letter to the light that falls on familiar streets.",
+    video: "/content/oil.mp4.mp4",
+    description: "Rooted in tradition and emotion, this piece captures not just two individuals, but a bond shaped by love, संस्कार (values), and a lifetime of shared moments.",
     dimensions: "18 × 24 in",
   },
   {
     id: 3,
-    title: "The Weight of Waiting",
-    medium: "Charcoal & Pastel",
-    year: "2024",
+    title: "Irrfan",
+    medium: "graphite",
+    year: "2025",
     category: "portrait",
     size: "small",
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85",
-    description: "Charcoal portrait exploring the tension in stillness. The hands tell the story the face refuses to.",
-    dimensions: "12 × 16 in",
+    img: "/design/irrfan1.jpg",
+    lightboxImage: "/design/irrfan2.jpg",
+    description: "",
+    dimensions: "A2",
   },
   {
     id: 4,
-    title: "Fracture Lines",
-    medium: "Mixed Media",
+    title: "Radha Krishna",
+    medium: "poster colours",
     year: "2024",
-    category: "experimental",
+    category: "painting",
     size: "wide",
-    img: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=900&q=85",
-    description: "Collage, ink, and gold leaf. The cracks in the surface are the point — beauty lives in what has been broken and repaired.",
-    dimensions: "30 × 20 in",
+    img: "/design/rk.png",
+    lightboxImage: "/design/rk.png",
+    description: "",
+    dimensions: "16 x 23 in",
   },
   {
     id: 5,
-    title: "Mother, Unguarded",
-    medium: "Oil on Canvas",
-    year: "2023",
+    title: "Shree Ram Hanuman ji",
+    medium: "Colour pencils",
+    year: "2026",
     category: "portrait",
     size: "tall",
     img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=700&q=85",
-    description: "A portrait of quiet strength. Painted from memory and reference — the most personal piece in the collection.",
-    dimensions: "20 × 28 in",
+    video: "/content/cpramji.mp4",
+    lightboxImage: "/design/ramji.jpg",
+    description: "Rich in color and spirit, the artwork reflects not just their forms, but the sacred connection of bhakti and seva that lies at the heart of Indian tradition.",
+    dimensions: "A2 Size",
   },
   {
     id: 6,
-    title: "Monsoon Study No. 3",
-    medium: "Watercolour",
+    title: "emma watson",
+    medium: "graphite pencils",
     year: "2023",
     category: "painting",
     size: "small",
-    img: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=85",
-    description: "Rain on glass, light diffused. Watercolour's natural bleed becomes the medium's message.",
-    dimensions: "9 × 12 in",
+    img: "/design/emma.png",
+    lightboxImage: "/design/emma.png",
+    description: "",
+    dimensions: "a4 size",
   },
   {
     id: 7,
-    title: "Dissolution",
-    medium: "Ink & Resin",
-    year: "2023",
-    category: "experimental",
+    title: "The batman (work in progress",
+    medium: "charcoal and graphite",
+    year: "2025",
+    category: "painting",
     size: "small",
-    img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=85",
-    description: "Ink dropped into resin — controlled chaos. The artist's hand guides but does not dictate.",
-    dimensions: "12 × 12 in",
-  },
-  {
-    id: 8,
-    title: "The Performer at Rest",
-    medium: "Graphite",
-    year: "2023",
-    category: "portrait",
-    size: "wide",
-    img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=900&q=85",
-    description: "A self-portrait in graphite. The performer without the performance — raw, unlit, honest.",
-    dimensions: "18 × 12 in",
+    img: "/design/batman.png",
+    lightboxImage: "/design/batman2.jpg",
+    description: "",
+    dimensions: "16 x 23 in",
   },
 ];
 
@@ -163,11 +161,23 @@ export default function GalleryGrid() {
               onMouseLeave={() => setHovered(null)}
               onClick={() => setLightbox(i)}
             >
-              {/* Image with zoom */}
-              <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-                style={{ backgroundImage: `url('${art.img}')` }}
-              />
+              {/* Image with zoom or video */}
+              {art.video ? (
+                <video
+                  src={art.video}
+                  loop
+                  playsInline
+                  muted
+                  autoPlay
+                  preload="auto"
+                  className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-110"
+                />
+              ) : (
+                <div
+                  className="absolute inset-0 bg-contain bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+                  style={{ backgroundImage: `url('${art.img}')` }}
+                />
+              )}
 
               {/* Base dark overlay */}
               <div className="absolute inset-0 bg-black/50 group-hover:bg-black/20 transition-colors duration-500" />
@@ -229,12 +239,24 @@ export default function GalleryGrid() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="grid grid-cols-1 md:grid-cols-[1fr_360px]">
-              {/* Image */}
+              {/* Image or Video */}
               <div className="relative aspect-square md:aspect-auto min-h-[300px] md:min-h-[500px]">
-                <div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url('${artworks[lightbox].img}')` }}
-                />
+                {artworks[lightbox].video ? (
+                  <video
+                    src={artworks[lightbox].video}
+                    loop
+                    playsInline
+                    muted
+                    autoPlay
+                    preload="auto"
+                    className="absolute inset-0 w-full h-full object-contain"
+                  />
+                ) : (
+                  <div
+                    className="absolute inset-0 bg-contain bg-center"
+                    style={{ backgroundImage: `url('${artworks[lightbox].lightboxImage || artworks[lightbox].img}')` }}
+                  />
+                )}
                 {/* Spotlight */}
                 <div
                   className="absolute inset-0 pointer-events-none"
