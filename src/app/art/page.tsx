@@ -5,7 +5,6 @@ import ArtHero from "@/components/art/ArtHero";
 import GalleryGrid from "@/components/art/GalleryGrid";
 import Categories from "@/components/art/Categories";
 import ProcessSection from "@/components/art/ProcessSection";
-import ClientWork from "@/components/art/ClientWork";
 import ArtCTA from "@/components/art/ArtCTA";
 import ArtFooter from "@/components/art/ArtFooter";
 
@@ -18,7 +17,6 @@ export default function ArtPage() {
         <GalleryGrid />
         <Categories />
         <ProcessSection />
-        <ClientWork />
         <ArtCTA />
       </main>
       <ArtFooter />

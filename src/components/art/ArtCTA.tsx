@@ -147,14 +147,6 @@ export default function ArtCTA() {
               ))}
             </div>
 
-            {/* Pricing note */}
-            <div className="p-5 border border-gold/15 bg-gold/4">
-              <p className="font-sans text-[9px] tracking-[0.3em] uppercase text-gold/50 mb-2">Pricing</p>
-              <p className="font-sans text-xs text-white/40 leading-relaxed">
-                Pricing varies by size, medium, and complexity. Small charcoal portraits start from ₹2,500.
-                Large oil paintings from ₹8,000. Custom quotes provided within 24 hours.
-              </p>
-            </div>
           </div>
 
           {/* Right: form */}

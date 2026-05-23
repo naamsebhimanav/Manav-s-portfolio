@@ -6,10 +6,7 @@ import { ArrowLeft, Menu, X } from "lucide-react";
 
 const sections = [
   { label: "Posters",  href: "#posters" },
-  { label: "Logos",    href: "#logos" },
-  { label: "Social",   href: "#social" },
-  { label: "Before/After", href: "#before-after" },
-  { label: "Mockups",  href: "#mockups" },
+  { label: "User Interfaces",   href: "#social" },
 ];
 
 export default function DesignNav() {

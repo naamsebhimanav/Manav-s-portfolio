@@ -1,7 +1,8 @@
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
-import { Mail, ArrowRight } from "lucide-react";
+import { Mail, ArrowRight, ArrowLeft } from "lucide-react";
 import { InstagramIcon, LinkedinIcon, YoutubeIcon, BehanceIcon } from "@/components/ui/SocialIcons";
+import Link from "next/link";
 
 
 export const metadata = {
@@ -13,8 +14,18 @@ export default function ContactPage() {
   return (
     <div className="bg-void text-ivory min-h-screen flex flex-col font-sans selection:bg-gold/30 selection:text-gold-light">
       <Navigation />
-      
+
       <main className="flex-grow flex items-center justify-center pt-32 pb-24 px-6 lg:px-12 relative overflow-hidden">
+        {/* Back button */}
+        <div className="absolute top-20 left-6 lg:left-12 z-20">
+          <Link
+            href="/"
+            className="flex items-center gap-2 group text-ivory/40 hover:text-gold transition-colors duration-300"
+          >
+            <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform duration-300" />
+            <span className="font-sans text-[10px] tracking-[0.3em] uppercase">Back to Home</span>
+          </Link>
+        </div>
         {/* Subtle background grain */}
         <div className="absolute inset-0 grain opacity-20 pointer-events-none" />
         

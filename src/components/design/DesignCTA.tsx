@@ -4,10 +4,10 @@ import { useState } from "react";
 import { Send, Zap, Clock, CheckCircle, Layers } from "lucide-react";
 
 const services = [
-  { icon: Layers,       label: "Brand Identity",   price: "From ₹5,000",  time: "5–7 days" },
-  { icon: Zap,          label: "Poster Design",    price: "From ₹1,500",  time: "2–3 days" },
-  { icon: CheckCircle,  label: "Social Media Kit", price: "From ₹3,000",  time: "3–5 days" },
-  { icon: Clock,        label: "Full Campaign",    price: "Custom quote", time: "7–14 days" },
+  { icon: Layers,       label: "Brand Identity",   time: "5–7 days" },
+  { icon: Zap,          label: "Poster Design",    time: "2–3 days" },
+  { icon: CheckCircle,  label: "Social Media Kit", time: "3–5 days" },
+  { icon: Clock,        label: "Full Campaign",    time: "7–14 days" },
 ];
 
 const projectTypes = [
@@ -79,7 +79,6 @@ export default function DesignCTA() {
                 className="p-4 border border-white/5 bg-white/[0.02] hover:border-gold/20 hover:bg-white/[0.04] transition-all duration-300 text-left">
                 <s.icon size={16} className="text-gold/50 mb-3" />
                 <p className="font-sans font-semibold text-xs text-white/70 mb-1">{s.label}</p>
-                <p className="font-sans text-[10px] text-gold/60">{s.price}</p>
                 <p className="font-sans text-[9px] text-white/25 mt-0.5">{s.time}</p>
               </div>
             ))}

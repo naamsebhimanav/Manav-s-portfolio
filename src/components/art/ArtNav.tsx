@@ -8,7 +8,6 @@ const sections = [
   { label: "Gallery",    href: "#gallery" },
   { label: "Categories", href: "#categories" },
   { label: "Process",    href: "#process" },
-  { label: "Commissions",href: "#commissions" },
 ];
 
 export default function ArtNav() {

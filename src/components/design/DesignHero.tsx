@@ -2,13 +2,6 @@
 
 import { ArrowDown, Layers, Zap, Monitor } from "lucide-react";
 
-const stats = [
-  { num: "80+",  label: "Projects" },
-  { num: "40+",  label: "Brands" },
-  { num: "3",    label: "Years" },
-  { num: "100%", label: "Delivered" },
-];
-
 const tags = ["Brand Identity", "Poster Design", "Social Media", "Typography", "UI/UX", "Motion"];
 
 export default function DesignHero() {
@@ -57,7 +50,7 @@ export default function DesignHero() {
         <div className="flex items-center justify-center gap-4 mb-8">
           <div className="h-px w-10 bg-gradient-to-r from-transparent to-gold/50" />
           <span className="font-sans text-[9px] tracking-[0.6em] uppercase text-gold/60">
-            Graphic Design · Manav Arora
+            Design · Manav Arora
           </span>
           <div className="h-px w-10 bg-gradient-to-l from-transparent to-gold/50" />
         </div>
@@ -103,16 +96,6 @@ export default function DesignHero() {
             <Zap size={14} />
             Hire Me
           </button>
-        </div>
-
-        {/* Stats */}
-        <div className="flex items-center justify-center gap-10">
-          {stats.map((s) => (
-            <div key={s.label} className="text-center">
-              <p className="font-sans font-black text-2xl text-white">{s.num}</p>
-              <p className="font-sans text-[9px] tracking-[0.3em] uppercase text-white/25 mt-1">{s.label}</p>
-            </div>
-          ))}
         </div>
       </div>
 

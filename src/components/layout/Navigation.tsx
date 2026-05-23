@@ -16,7 +16,6 @@ const portfolioPages = [
   { label: "Art",        href: "/art" },
   { label: "Design",     href: "/design" },
   { label: "Creator",    href: "/creator" },
-  { label: "Hire Me",    href: "/hire" },
   { label: "Contact",    href: "/contact" },
 ];
 
@@ -113,16 +112,6 @@ export default function Navigation() {
               )}
             </div>
 
-            {/* Hire Me CTA */}
-            <Link
-              href="/hire"
-              className="font-sans text-[10px] tracking-[0.3em] uppercase font-semibold px-5 py-2.5 transition-colors duration-300 whitespace-nowrap"
-              style={{ background: "#c9a84c", color: "#050505" }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#e8c97a"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#c9a84c"; }}
-            >
-              Hire Me
-            </Link>
           </div>
 
           {/* ── Mobile: hamburger ── */}
@@ -172,15 +161,6 @@ export default function Navigation() {
               </Link>
             ))}
 
-            {/* Hire CTA */}
-            <Link
-              href="/hire"
-              onClick={() => setOpen(false)}
-              className="mt-4 font-sans text-xs tracking-[0.3em] uppercase font-semibold px-10 py-4 w-full text-center"
-              style={{ background: "#c9a84c", color: "#050505" }}
-            >
-              Hire Me
-            </Link>
           </nav>
 
           <p className="absolute bottom-8 font-sans text-[9px] tracking-[0.4em] uppercase text-smoke">

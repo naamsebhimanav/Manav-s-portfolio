@@ -20,73 +20,61 @@ const posters: Poster[] = [
   {
     id: 1,
     title: "Bahurupiya",
-    client: "National Youth Theatre Festival",
-    year: "2024",
-    category: "Event Poster",
-    description: "A cinematic poster for the award-winning solo performance. Layered masks, fractured identity, and a single spotlight — the visual language of transformation.",
-    tools: ["Photoshop", "Illustrator", "Typography"],
-    img: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=900&q=85",
+    client: "Sutradhar national theatre competition, Indore",
+    year: "2026",
+    category: "play poster",
+    description: "",
+    tools: ["figma", "chatgpt"],
+    img: "/design/final.jpg",
     accent: "#c9a84c",
     size: "hero",
   },
   {
     id: 2,
-    title: "Roots & Routes",
-    client: "Cultural Festival, Chandigarh",
-    year: "2024",
-    category: "Festival Identity",
-    description: "Bold typographic poster merging traditional Indian motifs with Swiss grid principles. Gold on black — heritage meeting modernity.",
-    tools: ["Illustrator", "InDesign", "Custom Type"],
-    img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=85",
+    title: "Vidroh",
+    client: "Sutradhar national theatre competition, Indore",
+    year: "2026",
+    category: "play poster",
+    description: "",
+    tools: ["figma", "chatgpt"],
+    img: "/design/vidroh 2.jpg",
     accent: "#e8c97a",
     size: "tall",
   },
   {
     id: 3,
-    title: "Andha Yug",
-    client: "Prithvi Theatre, Mumbai",
-    year: "2024",
-    category: "Theatre Poster",
-    description: "Dark, visceral poster for the post-war epic. Ash, fire, and the silhouette of a cursed warrior — designed to unsettle.",
-    tools: ["Photoshop", "Midjourney", "Compositing"],
-    img: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=700&q=85",
+    title: "Gunwanti",
+    client: "Anand Mohan Mathur auditorium, Indore",
+    year: "2025",
+    category: "play poster",
+    description: "",
+    tools: ["figma", "chatgpt"],
+    img: "/design/Group 9.jpg",
     accent: "#ff6b35",
     size: "tall",
   },
   {
     id: 4,
-    title: "TEDx Storytelling",
-    client: "TEDx Campus, Chandigarh",
-    year: "2023",
-    category: "Event Poster",
-    description: "Clean, high-contrast poster for the TEDx storytelling edition. Red on black, bold sans-serif, zero compromise.",
-    tools: ["Illustrator", "Typography", "Grid System"],
-    img: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=900&q=85",
+    title: "Ankahee ( A short film",
+    client: "Youtube thumbnail",
+    year: "2026",
+    category: "Short film poster",
+    description: "",
+    tools: ["figma", "chatgpt"],
+    img: "/design/ANKAHEE 3.jpg",
     accent: "#e63946",
     size: "wide",
   },
   {
     id: 5,
-    title: "Monsoon Collective",
-    client: "Independent Music Project",
-    year: "2023",
-    category: "Album Art",
-    description: "Album artwork for an indie music collective. Rain, neon, and the particular loneliness of a city at 2am.",
-    tools: ["Photoshop", "Lightroom", "Compositing"],
-    img: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=700&q=85",
+    title: "Samadhi bhai Ram singh",
+    client: "Sutradhar national theatre competition, Indore",
+    year: "2026",
+    category: "play poster",
+    description: "",
+    tools: ["figma", "chatgpt"],
+    img: "/design/samadhi.jpg",
     accent: "#4cc9f0",
-    size: "square",
-  },
-  {
-    id: 6,
-    title: "Ink & Intention",
-    client: "Theatre Poster Series",
-    year: "2023",
-    category: "Series Design",
-    description: "A 12-poster series for theatre productions. Each poster uses a single typeface, a single colour, and a single idea — executed with precision.",
-    tools: ["Illustrator", "InDesign", "Typography"],
-    img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=700&q=85",
-    accent: "#c9a84c",
     size: "square",
   },
 ];
@@ -99,9 +87,9 @@ const sizeGrid: Record<Poster["size"], string> = {
 };
 
 const aspectMap: Record<Poster["size"], string> = {
-  hero:   "aspect-[4/3] md:aspect-auto",
+  hero:   "aspect-square",
   tall:   "aspect-[3/4]",
-  wide:   "aspect-[16/7]",
+  wide:   "aspect-[16/9]",
   square: "aspect-square",
 };
 
@@ -138,17 +126,18 @@ export default function PosterShowcase() {
         </div>
 
         {/* Masonry grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:auto-rows-[260px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:auto-rows-[300px]">
           {posters.map((p, i) => (
             <div
               key={p.id}
-              className={`group relative overflow-hidden cursor-pointer border border-white/5 hover:border-white/20 transition-all duration-500 ${sizeGrid[p.size]} ${aspectMap[p.size]}`}
+              className={`group relative overflow-hidden cursor-pointer border border-white/5 hover:border-white/20 transition-all duration-500 ${sizeGrid[p.size]} ${aspectMap[p.size]} min-h-[200px]`}
               onClick={() => setLightbox(i)}
             >
               {/* Image */}
-              <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                style={{ backgroundImage: `url('${p.img}')` }}
+              <img
+                src={p.img}
+                alt={p.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
 
               {/* Dark overlay */}
@@ -215,7 +204,7 @@ export default function PosterShowcase() {
             onClick={(e) => e.stopPropagation()}>
             <div className="grid grid-cols-1 md:grid-cols-[1fr_340px]">
               {/* Image */}
-              <div className="relative aspect-[4/3] md:aspect-auto min-h-[300px] md:min-h-[500px]">
+              <div className={`relative ${aspectMap[posters[lightbox].size]} md:aspect-auto min-h-[300px] md:min-h-[500px]`}>
                 <div className="absolute inset-0 bg-cover bg-center"
                   style={{ backgroundImage: `url('${posters[lightbox].img}')` }} />
                 <div className="absolute inset-0 bg-black/20" />
