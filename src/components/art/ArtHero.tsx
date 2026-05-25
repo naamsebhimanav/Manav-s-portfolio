@@ -86,7 +86,7 @@ export default function ArtHero() {
             View Gallery
           </button>
           <button
-            onClick={() => go("#cta")}
+            onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
             className="border border-gold/40 text-gold font-sans text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold/10 hover:border-gold transition-all duration-300"
           >
             Commission a Portrait

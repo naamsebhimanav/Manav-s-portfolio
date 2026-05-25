@@ -10,6 +10,20 @@ export default function DesignHero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#080808]">
 
+      {/* ── Background image ── */}
+      <div className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "url('/content/design thumb.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.2,
+        }} />
+      {/* ── Dark overlay for contrast ── */}
+      <div className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "linear-gradient(to bottom, rgba(8,8,8,0.8) 0%, rgba(8,8,8,0.6) 50%, rgba(8,8,8,0.8) 100%)",
+        }} />
+
       {/* ── Grid background ── */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.04]"
         style={{
@@ -91,7 +105,7 @@ export default function DesignHero() {
             <Layers size={14} />
             View Work
           </button>
-          <button onClick={() => go("#cta")}
+          <button onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
             className="flex items-center gap-3 border border-gold/40 text-gold font-sans text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold/10 hover:border-gold transition-all duration-300">
             <Zap size={14} />
             Hire Me

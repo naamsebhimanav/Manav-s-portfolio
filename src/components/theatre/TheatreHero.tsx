@@ -147,16 +147,22 @@ export default function TheatreHero() {
         {/* CTA row */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <button
+            onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+            className="border border-gold/40 text-gold font-sans text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold/10 hover:border-gold transition-all duration-300"
+          >
+            Hire Me
+          </button>
+          <button
             onClick={() => document.querySelector("#timeline")?.scrollIntoView({ behavior: "smooth" })}
             className="bg-gold text-void font-sans font-semibold text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold-light transition-colors duration-300"
           >
             See My Journey
           </button>
           <button
-            onClick={() => document.querySelector("#bahurupiya")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
             className="border border-gold/40 text-gold font-sans text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold/10 hover:border-gold transition-all duration-300"
           >
-            Bahurupiya Project
+            Commission
           </button>
         </div>
 

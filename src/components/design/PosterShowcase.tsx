@@ -101,7 +101,23 @@ export default function PosterShowcase() {
 
   return (
     <section id="posters" className="relative py-24 lg:py-32 bg-[#080808] overflow-hidden">
-
+      {/* Background image */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "url('/content/thumb 2.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.25,
+        }}
+      />
+      {/* Dark overlay for contrast */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.3) 100%)",
+        }}
+      />
       {/* Section accent line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/8 to-transparent" />
 
@@ -137,7 +153,7 @@ export default function PosterShowcase() {
               <img
                 src={p.img}
                 alt={p.title}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
               />
 
               {/* Dark overlay */}

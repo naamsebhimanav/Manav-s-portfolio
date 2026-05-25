@@ -74,7 +74,7 @@ export default function ContentStyle() {
         {/* Section label */}
         <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "16px" }}>
           <span className="font-sans" style={{ fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(201,168,76,0.6)" }}>
-            03 · Content Style
+            02 · Content Style
           </span>
           <div style={{ height: "1px", flex: 1, background: "rgba(201,168,76,0.15)" }} />
         </div>

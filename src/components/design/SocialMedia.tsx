@@ -31,18 +31,6 @@ const designs: UIDesign[] = [
   },
   {
     id: 2,
-    title: "Roots & Routes",
-    client: "Cultural Festival",
-    year: "2024",
-    category: "Event Branding",
-    description: "Festival branding including posters, social media graphics, and promotional materials.",
-    tools: ["Figma", "Photoshop"],
-    img: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=85",
-    accent: "#e63946",
-    size: "tall",
-  },
-  {
-    id: 3,
     title: "Landing page 2",
     client: "landing page",
     year: "2026",
@@ -113,6 +101,23 @@ export default function SocialMedia() {
 
   return (
     <section id="social" className="relative py-24 lg:py-32 bg-[#080808] overflow-hidden">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "url('/content/thumb 2.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.25,
+        }}
+      />
+      {/* Dark overlay for contrast */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.3) 100%)",
+        }}
+      />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12">

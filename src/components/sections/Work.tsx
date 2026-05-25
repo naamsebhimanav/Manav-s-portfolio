@@ -81,6 +81,23 @@ export default function Work() {
 
   return (
     <section id="work" className="relative py-28 lg:py-36 bg-stage overflow-hidden">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "url('/content/thumb 2.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.25,
+        }}
+      />
+      {/* Dark overlay for contrast */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.3) 100%)",
+        }}
+      />
       {/* Top glow */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -259,13 +276,13 @@ export default function Work() {
         {/* View all */}
         <div className="mt-14 flex justify-center">
           <a
-            href="https://www.instagram.com"
+            href="https://www.instagram.com/naamsebhimanav"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-4 font-sans text-xs tracking-[0.3em] uppercase text-ivory/30 hover:text-gold transition-colors duration-300"
           >
             <span className="h-px w-8 bg-current group-hover:w-16 transition-all duration-300" />
-            View Full Portfolio
+            Explore my instagram
             <span className="h-px w-8 bg-current group-hover:w-16 transition-all duration-300" />
           </a>
         </div>

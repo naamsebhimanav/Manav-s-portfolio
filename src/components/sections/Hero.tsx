@@ -16,7 +16,7 @@ export default function Hero() {
       {/* ── Background Image ── */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-90"
-        style={{ backgroundImage: "url('/hero_gold_nebula_bg.png')" }}
+        style={{ backgroundImage: "url('/hero-bg-user.png')" }}
       />
       {/* ── Dark overlay for contrast ── */}
       <div className="absolute inset-0 bg-gradient-to-b from-void/10 via-void/60 to-void pointer-events-none" />

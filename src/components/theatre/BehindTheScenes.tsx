@@ -82,6 +82,23 @@ export default function BehindTheScenes() {
 
   return (
     <section id="backstage" className="relative py-28 lg:py-36 bg-void overflow-hidden">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "url('/content/thumb 2.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.25,
+        }}
+      />
+      {/* Dark overlay for contrast */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.7) 100%)",
+        }}
+      />
       {/* Side glow */}
       <div
         className="absolute inset-0 pointer-events-none"

@@ -18,6 +18,27 @@ export default function CreatorHero() {
         background: "#080808",
       }}
     >
+      {/* Background image */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: "url('/content/content thumb.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.25,
+          pointerEvents: "none",
+        }}
+      />
+      {/* Dark overlay for contrast */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "linear-gradient(to bottom, rgba(8,8,8,0.7) 0%, rgba(8,8,8,0.5) 50%, rgba(8,8,8,0.7) 100%)",
+          pointerEvents: "none",
+        }}
+      />
       {/* Dot grid background */}
       <div
         style={{
@@ -244,7 +265,7 @@ export default function CreatorHero() {
             Explore fun
           </button>
           <button
-            onClick={() => go("#cta")}
+            onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
             className="font-sans"
             style={{
               background: "none",
