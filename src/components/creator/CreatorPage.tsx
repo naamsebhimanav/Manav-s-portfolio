@@ -7,7 +7,6 @@ import ReelPerformance from "./ReelPerformance";
 import ContentStyle from "./ContentStyle";
 import StrategyInsight from "./StrategyInsight";
 import CreatorCTA from "./CreatorCTA";
-import CreatorFooter from "./CreatorFooter";
 
 export default function CreatorPage() {
   return (
@@ -19,7 +18,6 @@ export default function CreatorPage() {
       <ContentStyle />
       <StrategyInsight />
       <CreatorCTA />
-      <CreatorFooter />
     </div>
   );
 }

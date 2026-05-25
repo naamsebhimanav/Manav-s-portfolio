@@ -2,13 +2,6 @@
 
 import { ArrowDown } from "lucide-react";
 
-const stats = [
-  { num: "50K+",  label: "Followers" },
-  { num: "2.1M",  label: "Impressions" },
-  { num: "8.4%",  label: "Engagement" },
-  { num: "100+",  label: "Reels" },
-];
-
 export default function CreatorHero() {
   const go = (id: string) => document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
 
@@ -185,7 +178,7 @@ export default function CreatorHero() {
             className="font-sans"
             style={{ fontSize: "9px", letterSpacing: "0.6em", textTransform: "uppercase", color: "rgba(201,168,76,0.6)" }}
           >
-            Content Creator · Manav Arora
+            Content Creator · Naamsebhimanav
           </span>
           <div style={{ height: "1px", width: "40px", background: "linear-gradient(to left, transparent, rgba(201,168,76,0.5))" }} />
         </div>
@@ -214,22 +207,10 @@ export default function CreatorHero() {
               backgroundClip: "text",
             }}
           >
-            moves people
+            entertains people
           </span>
         </h1>
 
-        {/* Subtext */}
-        <p
-          className="font-sans"
-          style={{
-            fontSize: "13px",
-            color: "rgba(245,240,232,0.45)",
-            letterSpacing: "0.15em",
-            marginBottom: "48px",
-          }}
-        >
-          50K+ followers · 2.1M impressions · 8.4% engagement rate
-        </p>
 
         {/* CTA buttons */}
         <div
@@ -260,7 +241,7 @@ export default function CreatorHero() {
             onMouseEnter={(e) => (e.currentTarget.style.background = "#e8c97a")}
             onMouseLeave={(e) => (e.currentTarget.style.background = "#ffffff")}
           >
-            See the Numbers
+            Explore fun
           </button>
           <button
             onClick={() => go("#cta")}
@@ -289,35 +270,6 @@ export default function CreatorHero() {
           </button>
         </div>
 
-        {/* Stats row */}
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "40px",
-          }}
-        >
-          {stats.map((s, i) => (
-            <div key={s.label} style={{ textAlign: "center", display: "flex", alignItems: "center", gap: "40px" }}>
-              <div>
-                <p className="font-serif" style={{ fontSize: "clamp(1.4rem,2.5vw,2rem)", color: "#c9a84c", fontWeight: 300 }}>
-                  {s.num}
-                </p>
-                <p
-                  className="font-sans"
-                  style={{ fontSize: "9px", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(107,107,107,1)", marginTop: "4px" }}
-                >
-                  {s.label}
-                </p>
-              </div>
-              {i < stats.length - 1 && (
-                <div style={{ width: "1px", height: "32px", background: "rgba(201,168,76,0.15)" }} />
-              )}
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* Scroll indicator */}

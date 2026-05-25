@@ -1,105 +1,215 @@
 "use client";
 
-import { Eye, Heart, MessageCircle, Share2 } from "lucide-react";
+import { useEffect, useRef } from "react";
 
-const reels = [
+const mockupContent = [
   {
-    title: "The Mask We Wear",
-    category: "Self-help",
-    views: "1.2M",
-    viewsNum: 1200000,
-    likes: "89K",
-    comments: "4.2K",
-    shares: "12K",
-    img: "photo-1507003211169-0a1dd7228f2d",
+    type: "educational",
+    headline: "The 30° Rule",
+    description: "Why camera angles between 15–25° improve engagement retention.",
+    visual: "Minimal diagram with angle indicator",
+    video: "/content/gow gow.mp4",
+    section: "entertainment"
   },
   {
-    title: "Art is Therapy",
-    category: "Artistic",
-    views: "847K",
-    viewsNum: 847000,
-    likes: "62K",
-    comments: "3.1K",
-    shares: "8.9K",
-    img: "photo-1579783902614-a3fb3927b6a5",
+    type: "visual",
+    headline: "Color Psychology",
+    description: "How warm tones drive 23% higher conversion rates.",
+    visual: "Color palette breakdown",
+    video: "/content/azaad.mp4",
+    section: "entertainment"
   },
   {
-    title: "Stage Fright is a Lie",
-    category: "Performance",
-    views: "634K",
-    viewsNum: 634000,
-    likes: "48K",
-    comments: "2.8K",
-    shares: "7.2K",
-    img: "photo-1547036967-23d11aacaee0",
+    type: "storytelling",
+    headline: "The Hook Formula",
+    description: "3-second attention windows and how to capture them.",
+    visual: "Timeline visualization",
+    video: "/content/friends.mp4",
+    section: "entertainment"
   },
   {
-    title: "Why I Paint Every Day",
-    category: "Artistic",
-    views: "412K",
-    viewsNum: 412000,
-    likes: "31K",
-    comments: "1.9K",
-    shares: "5.1K",
-    img: "photo-1541961017774-22349e4a1262",
+    type: "analytical",
+    headline: "Engagement Loops",
+    description: "Understanding viewer behavior patterns in short-form content.",
+    visual: "Flow diagram",
+    video: "/content/potty.mp4",
+    section: "entertainment"
   },
   {
-    title: "The Story Behind Bahurupiya",
-    category: "Storytelling",
-    views: "389K",
-    viewsNum: 389000,
-    likes: "28K",
-    comments: "1.7K",
-    shares: "4.8K",
-    img: "photo-1516450360452-9312f5e86fc7",
+    type: "passionate",
+    headline: "Creative Freedom",
+    description: "Breaking boundaries through authentic expression.",
+    visual: "Artistic composition",
+    video: "/content/cpramji.mp4",
+    section: "passionate"
   },
   {
-    title: "Identity is a Performance",
-    category: "Self-help",
-    views: "298K",
-    viewsNum: 298000,
-    likes: "22K",
-    comments: "1.4K",
-    shares: "3.9K",
-    img: "photo-1518611012118-696072aa579a",
+    type: "passionate",
+    headline: "Artistic Journey",
+    description: "The path from inspiration to creation.",
+    visual: "Process visualization",
+    video: "/content/oil.mp4.mp4",
+    section: "passionate"
   },
+  {
+    type: "passionate",
+    headline: "Emotional Depth",
+    description: "Connecting through shared human experiences.",
+    visual: "Portrait study",
+    video: "/content/VID_20260303_033415_592_bsl.mp4",
+    section: "passionate"
+  },
+  {
+    type: "passionate",
+    headline: "Creative Flow",
+    description: "Finding rhythm in the artistic process.",
+    visual: "Motion study",
+    video: "/content/VID_20260324_013059_319_bsl.mp4",
+    section: "passionate"
+  }
 ];
-
-const totalStats = [
-  { label: "Total Views",    value: "3.78M" },
-  { label: "Total Likes",    value: "280K" },
-  { label: "Avg Engagement", value: "9.2%" },
-  { label: "Viral Reels",    value: "3" },
-];
-
-const categoryColors: Record<string, string> = {
-  "Self-help":    "#c9a84c",
-  "Artistic":     "#e8c97a",
-  "Performance":  "#a78bfa",
-  "Storytelling": "#60a5fa",
-};
 
 export default function ReelPerformance() {
+  const videoRefs = [
+    useRef<HTMLVideoElement>(null),
+    useRef<HTMLVideoElement>(null),
+    useRef<HTMLVideoElement>(null),
+    useRef<HTMLVideoElement>(null),
+    useRef<HTMLVideoElement>(null),
+    useRef<HTMLVideoElement>(null),
+    useRef<HTMLVideoElement>(null),
+    useRef<HTMLVideoElement>(null)
+  ];
+
+  useEffect(() => {
+    // First 3 videos: 10-second loop from start with smooth fade
+    [0, 1, 2].forEach((index) => {
+      const video = videoRefs[index].current;
+      if (!video) return;
+
+      const handleTimeUpdate = () => {
+        if (video.currentTime >= 9.5) {
+          video.style.transition = 'opacity 0.3s ease';
+          video.style.opacity = '0';
+        }
+        if (video.currentTime >= 10) {
+          video.currentTime = 0;
+          video.style.opacity = '1';
+          setTimeout(() => {
+            video.style.transition = 'none';
+          }, 300);
+          video.play();
+        }
+      };
+
+      video.addEventListener('timeupdate', handleTimeUpdate);
+      return () => video.removeEventListener('timeupdate', handleTimeUpdate);
+    });
+
+    // Fourth video: last 8 seconds loop with smooth fade
+    const video4 = videoRefs[3].current;
+    if (video4) {
+      const handleLoadedMetadata = () => {
+        const duration = video4.duration;
+        const startTime = duration - 8;
+        video4.currentTime = startTime;
+      };
+
+      const handleTimeUpdate = () => {
+        const duration = video4.duration;
+        const startTime = duration - 8;
+        if (video4.currentTime >= duration - 0.5) {
+          video4.style.transition = 'opacity 0.3s ease';
+          video4.style.opacity = '0';
+        }
+        if (video4.currentTime >= duration) {
+          video4.currentTime = startTime;
+          video4.style.opacity = '1';
+          setTimeout(() => {
+            video4.style.transition = 'none';
+          }, 300);
+          video4.play();
+        }
+      };
+
+      video4.addEventListener('loadedmetadata', handleLoadedMetadata);
+      video4.addEventListener('timeupdate', handleTimeUpdate);
+      return () => {
+        video4.removeEventListener('loadedmetadata', handleLoadedMetadata);
+        video4.removeEventListener('timeupdate', handleTimeUpdate);
+      };
+    }
+
+    // Videos 5-8: 10-second loop from start with smooth fade
+    [4, 5, 6, 7].forEach((index) => {
+      const video = videoRefs[index].current;
+      if (!video) return;
+
+      const handleTimeUpdate = () => {
+        if (video.currentTime >= 9.5) {
+          video.style.transition = 'opacity 0.3s ease';
+          video.style.opacity = '0';
+        }
+        if (video.currentTime >= 10) {
+          video.currentTime = 0;
+          video.style.opacity = '1';
+          setTimeout(() => {
+            video.style.transition = 'none';
+          }, 300);
+          video.play();
+        }
+      };
+
+      video.addEventListener('timeupdate', handleTimeUpdate);
+      return () => video.removeEventListener('timeupdate', handleTimeUpdate);
+    });
+  }, []);
+
   return (
     <section
       id="reels"
-      style={{ background: "#080808", padding: "96px 0", position: "relative", overflow: "hidden" }}
+      style={{ background: "#0B0B0B", padding: "120px 0", position: "relative", overflow: "hidden" }}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      {/* Subtle background texture */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: "radial-gradient(circle at 50% 50%, rgba(201,168,76,0.03) 0%, transparent 50%)",
+          pointerEvents: "none"
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-12" style={{ position: "relative", zIndex: 10 }}>
         {/* Section label */}
-        <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "16px" }}>
-          <span className="font-sans" style={{ fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(201,168,76,0.6)" }}>
-            02 · Reel Performance
+        <div style={{ textAlign: "center", marginBottom: "24px" }}>
+          <span
+            className="font-sans"
+            style={{
+              fontSize: "9px",
+              letterSpacing: "0.5em",
+              textTransform: "uppercase",
+              color: "rgba(201,168,76,0.5)",
+            }}
+          >
+            Entertainment reels
           </span>
-          <div style={{ height: "1px", flex: 1, background: "rgba(201,168,76,0.15)" }} />
         </div>
 
-        {/* Headline */}
+        {/* Main heading */}
         <h2
           className="font-serif"
-          style={{ fontSize: "clamp(2.2rem,5vw,5rem)", lineHeight: 1, color: "#f5f0e8", fontWeight: 300, marginBottom: "64px" }}
+          style={{
+            fontSize: "clamp(2rem,4vw,3.5rem)",
+            lineHeight: 1.1,
+            color: "#f5f0e8",
+            fontWeight: 300,
+            marginBottom: "80px",
+            textAlign: "center",
+          }}
         >
-          Viral moments,{" "}
+          Content, designed to
+          <br />
           <span
             style={{
               fontStyle: "italic",
@@ -109,162 +219,238 @@ export default function ReelPerformance() {
               backgroundClip: "text",
             }}
           >
-            by the numbers
+            entertain and engage
           </span>
         </h2>
 
-        {/* Reels grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6 mb-16">
-          {reels.map((reel) => {
-            const isViral = reel.viewsNum >= 500000;
-            const catColor = categoryColors[reel.category] || "#c9a84c";
-            return (
+        {/* iPhone mockup showcase - Entertainment reels */}
+        <div style={{ display: "flex", justifyContent: "center", gap: "40px", flexWrap: "wrap", marginBottom: "80px" }}>
+          {mockupContent.slice(0, 4).map((item, index) => (
+            <div
+              key={index}
+              style={{
+                position: "relative",
+                transition: "transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-12px) scale(1.03)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0) scale(1)";
+              }}
+            >
+              {/* iPhone frame */}
               <div
-                key={reel.title}
                 style={{
+                  width: "200px",
+                  height: "400px",
+                  background: "#1a1a1a",
+                  borderRadius: "40px",
+                  padding: "12px",
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(201,168,76,0.1)",
                   position: "relative",
-                  borderRadius: "12px",
-                  overflow: "hidden",
-                  aspectRatio: "9/16",
-                  cursor: "pointer",
-                  transition: "transform 0.3s ease",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.02)")}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
               >
-                {/* Background image */}
+                {/* Screen */}
                 <div
                   style={{
-                    position: "absolute",
-                    inset: 0,
-                    backgroundImage: `url(https://images.unsplash.com/photo-${reel.img}?w=600&q=80)`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
+                    width: "100%",
+                    height: "100%",
+                    background: "#0d0d0d",
+                    borderRadius: "32px",
+                    overflow: "hidden",
+                    position: "relative",
                   }}
-                />
-
-                {/* Dark overlay */}
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    background: "linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.85) 100%)",
-                  }}
-                />
-
-                {/* Viral badge */}
-                {isViral && (
+                >
+                  {/* Notch */}
                   <div
                     style={{
                       position: "absolute",
                       top: "12px",
-                      left: "12px",
-                      background: "linear-gradient(135deg, #c9a84c, #e8c97a)",
-                      color: "#080808",
-                      fontSize: "8px",
-                      fontWeight: 700,
-                      letterSpacing: "0.15em",
-                      textTransform: "uppercase",
-                      padding: "4px 8px",
-                      borderRadius: "4px",
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      width: "80px",
+                      height: "24px",
+                      background: "#1a1a1a",
+                      borderRadius: "12px",
+                      zIndex: 10,
                     }}
-                    className="font-sans"
+                  />
+
+                  {/* Content preview */}
+                  <div
+                    style={{
+                      height: "100%",
+                      position: "relative",
+                      overflow: "hidden",
+                    }}
                   >
-                    🔥 Viral
-                  </div>
-                )}
-
-                {/* Category badge */}
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "12px",
-                    right: "12px",
-                    background: "rgba(0,0,0,0.6)",
-                    border: `1px solid ${catColor}40`,
-                    color: catColor,
-                    fontSize: "8px",
-                    fontWeight: 600,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    padding: "4px 8px",
-                    borderRadius: "4px",
-                    backdropFilter: "blur(4px)",
-                  }}
-                  className="font-sans"
-                >
-                  {reel.category}
-                </div>
-
-                {/* Bottom content */}
-                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "16px" }}>
-                  <p
-                    className="font-serif"
-                    style={{ fontSize: "14px", color: "#ffffff", fontWeight: 500, marginBottom: "12px", lineHeight: 1.3 }}
-                  >
-                    {reel.title}
-                  </p>
-
-                  {/* Stats */}
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6px" }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-                      <Eye size={10} style={{ color: "rgba(255,255,255,0.5)", flexShrink: 0 }} />
-                      <span className="font-sans" style={{ fontSize: "10px", color: "rgba(255,255,255,0.8)", fontWeight: 600 }}>{reel.views}</span>
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-                      <Heart size={10} style={{ color: "#f87171", flexShrink: 0 }} />
-                      <span className="font-sans" style={{ fontSize: "10px", color: "rgba(255,255,255,0.8)", fontWeight: 600 }}>{reel.likes}</span>
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-                      <MessageCircle size={10} style={{ color: "#60a5fa", flexShrink: 0 }} />
-                      <span className="font-sans" style={{ fontSize: "10px", color: "rgba(255,255,255,0.8)", fontWeight: 600 }}>{reel.comments}</span>
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-                      <Share2 size={10} style={{ color: "#4ade80", flexShrink: 0 }} />
-                      <span className="font-sans" style={{ fontSize: "10px", color: "rgba(255,255,255,0.8)", fontWeight: 600 }}>{reel.shares}</span>
-                    </div>
+                    <video
+                      ref={videoRefs[index]}
+                      autoPlay
+                      muted
+                      playsInline
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                      src={item.video}
+                    />
                   </div>
                 </div>
               </div>
-            );
-          })}
-        </div>
 
-        {/* Total stats summary bar */}
-        <div
-          style={{
-            background: "#111111",
-            border: "1px solid rgba(201,168,76,0.15)",
-            borderRadius: "12px",
-            padding: "32px",
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "space-around",
-            gap: "24px",
-          }}
-        >
-          {totalStats.map((s, i) => (
-            <div key={s.label} style={{ textAlign: "center", display: "flex", alignItems: "center", gap: "32px" }}>
-              <div>
-                <p
-                  className="font-serif"
-                  style={{ fontSize: "clamp(1.6rem,3vw,2.5rem)", color: "#c9a84c", fontWeight: 300, lineHeight: 1, marginBottom: "6px" }}
-                >
-                  {s.value}
-                </p>
-                <p
-                  className="font-sans"
-                  style={{ fontSize: "9px", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}
-                >
-                  {s.label}
-                </p>
-              </div>
-              {i < totalStats.length - 1 && (
-                <div style={{ width: "1px", height: "40px", background: "rgba(201,168,76,0.15)" }} />
-              )}
+              {/* Glow effect */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: -20,
+                  background: "radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%)",
+                  borderRadius: "60px",
+                  opacity: 0,
+                  transition: "opacity 0.4s ease",
+                  pointerEvents: "none",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.opacity = "1";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.opacity = "0";
+                }}
+              />
             </div>
           ))}
+        </div>
+
+        {/* Section label - Passionate reels */}
+        <div style={{ textAlign: "center", marginBottom: "24px" }}>
+          <span
+            className="font-sans"
+            style={{
+              fontSize: "9px",
+              letterSpacing: "0.5em",
+              textTransform: "uppercase",
+              color: "rgba(201,168,76,0.5)",
+            }}
+          >
+            Passionate reels
+          </span>
+        </div>
+
+        {/* iPhone mockup showcase - Passionate reels */}
+        <div style={{ display: "flex", justifyContent: "center", gap: "40px", flexWrap: "wrap" }}>
+          {mockupContent.slice(4, 8).map((item, index) => (
+            <div
+              key={index + 4}
+              style={{
+                position: "relative",
+                transition: "transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-12px) scale(1.03)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0) scale(1)";
+              }}
+            >
+              {/* iPhone frame */}
+              <div
+                style={{
+                  width: "200px",
+                  height: "400px",
+                  background: "#1a1a1a",
+                  borderRadius: "40px",
+                  padding: "12px",
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(201,168,76,0.1)",
+                  position: "relative",
+                }}
+              >
+                {/* Screen */}
+                <div
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    background: "#0d0d0d",
+                    borderRadius: "32px",
+                    overflow: "hidden",
+                    position: "relative",
+                  }}
+                >
+                  {/* Notch */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "12px",
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      width: "80px",
+                      height: "24px",
+                      background: "#1a1a1a",
+                      borderRadius: "12px",
+                      zIndex: 10,
+                    }}
+                  />
+
+                  {/* Content preview */}
+                  <div
+                    style={{
+                      height: "100%",
+                      position: "relative",
+                      overflow: "hidden",
+                    }}
+                  >
+                    <video
+                      ref={videoRefs[index + 4]}
+                      autoPlay
+                      muted
+                      playsInline
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                      src={item.video}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Glow effect */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: -20,
+                  background: "radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%)",
+                  borderRadius: "60px",
+                  opacity: 0,
+                  transition: "opacity 0.4s ease",
+                  pointerEvents: "none",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.opacity = "1";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.opacity = "0";
+                }}
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom note */}
+        <div style={{ textAlign: "center", marginTop: "80px" }}>
+          <p
+            className="font-sans"
+            style={{
+              fontSize: "10px",
+              letterSpacing: "0.3em",
+              textTransform: "uppercase",
+              color: "rgba(201,168,76,0.4)",
+            }}
+          >
+            Strategic content design · Visual storytelling · Data-driven insights
+          </p>
         </div>
       </div>
     </section>
