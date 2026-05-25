@@ -37,7 +37,7 @@ const artworks: Artwork[] = [
     category: "painting",
     size: "tall",
     img: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=700&q=85",
-    video: "/content/oil.mp4.mp4",
+    video: "/content/oil.mp4",
     description: "Rooted in tradition and emotion, this piece captures not just two individuals, but a bond shaped by love, संस्कार (values), and a lifetime of shared moments.",
     dimensions: "18 × 24 in",
   },

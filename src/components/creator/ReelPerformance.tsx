@@ -168,51 +168,31 @@ export default function ReelPerformance() {
   return (
     <section
       id="reels"
-      style={{ background: "#0B0B0B", padding: "120px 0", position: "relative", overflow: "hidden" }}
+      className="relative bg-[#0B0B0B] py-24 lg:py-32 overflow-hidden"
     >
       {/* Subtle background texture */}
       <div
+        className="absolute inset-0 pointer-events-none"
         style={{
-          position: "absolute",
-          inset: 0,
           backgroundImage: "radial-gradient(circle at 50% 50%, rgba(201,168,76,0.03) 0%, transparent 50%)",
-          pointerEvents: "none"
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12" style={{ position: "relative", zIndex: 10 }}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         {/* Section label */}
-        <div style={{ textAlign: "center", marginBottom: "24px" }}>
-          <span
-            className="font-sans"
-            style={{
-              fontSize: "9px",
-              letterSpacing: "0.5em",
-              textTransform: "uppercase",
-              color: "rgba(201,168,76,0.5)",
-            }}
-          >
+        <div className="text-center mb-6">
+          <span className="font-sans text-[9px] tracking-[0.5em] uppercase text-gold/50">
             Entertainment reels
           </span>
         </div>
 
         {/* Main heading */}
-        <h2
-          className="font-serif"
-          style={{
-            fontSize: "clamp(2rem,4vw,3.5rem)",
-            lineHeight: 1.1,
-            color: "#f5f0e8",
-            fontWeight: 300,
-            marginBottom: "80px",
-            textAlign: "center",
-          }}
-        >
+        <h2 className="font-serif text-display-lg text-ivory mb-20 text-center">
           Content, designed to
           <br />
           <span
+            className="italic"
             style={{
-              fontStyle: "italic",
               background: "linear-gradient(135deg, #c9a84c 0%, #e8c97a 50%, #c9a84c 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
@@ -224,77 +204,27 @@ export default function ReelPerformance() {
         </h2>
 
         {/* iPhone mockup showcase - Entertainment reels */}
-        <div style={{ display: "flex", justifyContent: "center", gap: "40px", flexWrap: "wrap", marginBottom: "80px" }}>
+        <div className="flex justify-center gap-8 lg:gap-10 flex-wrap mb-20">
           {mockupContent.slice(0, 4).map((item, index) => (
             <div
               key={index}
-              style={{
-                position: "relative",
-                transition: "transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-12px) scale(1.03)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0) scale(1)";
-              }}
+              className="relative transition-all duration-500 hover:-translate-y-3 hover:scale-105"
             >
               {/* iPhone frame */}
-              <div
-                style={{
-                  width: "200px",
-                  height: "400px",
-                  background: "#1a1a1a",
-                  borderRadius: "40px",
-                  padding: "12px",
-                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(201,168,76,0.1)",
-                  position: "relative",
-                }}
-              >
+              <div className="w-[160px] h-[320px] lg:w-[200px] lg:h-[400px] bg-[#1a1a1a] rounded-[40px] p-3 shadow-2xl shadow-black/50 border border-gold/10 relative">
                 {/* Screen */}
-                <div
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    background: "#0d0d0d",
-                    borderRadius: "32px",
-                    overflow: "hidden",
-                    position: "relative",
-                  }}
-                >
+                <div className="w-full h-full bg-[#0d0d0d] rounded-[32px] overflow-hidden relative">
                   {/* Notch */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "12px",
-                      left: "50%",
-                      transform: "translateX(-50%)",
-                      width: "80px",
-                      height: "24px",
-                      background: "#1a1a1a",
-                      borderRadius: "12px",
-                      zIndex: 10,
-                    }}
-                  />
+                  <div className="absolute top-3 left-1/2 -translate-x-1/2 w-[80px] h-[24px] bg-[#1a1a1a] rounded-[12px] z-10" />
 
                   {/* Content preview */}
-                  <div
-                    style={{
-                      height: "100%",
-                      position: "relative",
-                      overflow: "hidden",
-                    }}
-                  >
+                  <div className="h-full relative overflow-hidden">
                     <video
                       ref={videoRefs[index]}
                       autoPlay
                       muted
                       playsInline
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                      }}
+                      className="w-full h-full object-cover"
                       src={item.video}
                     />
                   </div>
@@ -302,114 +232,40 @@ export default function ReelPerformance() {
               </div>
 
               {/* Glow effect */}
-              <div
-                style={{
-                  position: "absolute",
-                  inset: -20,
-                  background: "radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%)",
-                  borderRadius: "60px",
-                  opacity: 0,
-                  transition: "opacity 0.4s ease",
-                  pointerEvents: "none",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.opacity = "1";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.opacity = "0";
-                }}
-              />
+              <div className="absolute inset-[-20px] bg-gradient-to-br from-gold/10 to-transparent rounded-[60px] opacity-0 transition-opacity duration-400 pointer-events-none group-hover:opacity-100" />
             </div>
           ))}
         </div>
 
         {/* Section label - Passionate reels */}
-        <div style={{ textAlign: "center", marginBottom: "24px" }}>
-          <span
-            className="font-sans"
-            style={{
-              fontSize: "9px",
-              letterSpacing: "0.5em",
-              textTransform: "uppercase",
-              color: "rgba(201,168,76,0.5)",
-            }}
-          >
+        <div className="text-center mb-6">
+          <span className="font-sans text-[9px] tracking-[0.5em] uppercase text-gold/50">
             Passionate reels
           </span>
         </div>
 
         {/* iPhone mockup showcase - Passionate reels */}
-        <div style={{ display: "flex", justifyContent: "center", gap: "40px", flexWrap: "wrap" }}>
+        <div className="flex justify-center gap-8 lg:gap-10 flex-wrap">
           {mockupContent.slice(4, 8).map((item, index) => (
             <div
               key={index + 4}
-              style={{
-                position: "relative",
-                transition: "transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-12px) scale(1.03)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0) scale(1)";
-              }}
+              className="relative transition-all duration-500 hover:-translate-y-3 hover:scale-105"
             >
               {/* iPhone frame */}
-              <div
-                style={{
-                  width: "200px",
-                  height: "400px",
-                  background: "#1a1a1a",
-                  borderRadius: "40px",
-                  padding: "12px",
-                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(201,168,76,0.1)",
-                  position: "relative",
-                }}
-              >
+              <div className="w-[160px] h-[320px] lg:w-[200px] lg:h-[400px] bg-[#1a1a1a] rounded-[40px] p-3 shadow-2xl shadow-black/50 border border-gold/10 relative">
                 {/* Screen */}
-                <div
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    background: "#0d0d0d",
-                    borderRadius: "32px",
-                    overflow: "hidden",
-                    position: "relative",
-                  }}
-                >
+                <div className="w-full h-full bg-[#0d0d0d] rounded-[32px] overflow-hidden relative">
                   {/* Notch */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "12px",
-                      left: "50%",
-                      transform: "translateX(-50%)",
-                      width: "80px",
-                      height: "24px",
-                      background: "#1a1a1a",
-                      borderRadius: "12px",
-                      zIndex: 10,
-                    }}
-                  />
+                  <div className="absolute top-3 left-1/2 -translate-x-1/2 w-[80px] h-[24px] bg-[#1a1a1a] rounded-[12px] z-10" />
 
                   {/* Content preview */}
-                  <div
-                    style={{
-                      height: "100%",
-                      position: "relative",
-                      overflow: "hidden",
-                    }}
-                  >
+                  <div className="h-full relative overflow-hidden">
                     <video
                       ref={videoRefs[index + 4]}
                       autoPlay
                       muted
                       playsInline
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                      }}
+                      className="w-full h-full object-cover"
                       src={item.video}
                     />
                   </div>
@@ -417,38 +273,14 @@ export default function ReelPerformance() {
               </div>
 
               {/* Glow effect */}
-              <div
-                style={{
-                  position: "absolute",
-                  inset: -20,
-                  background: "radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%)",
-                  borderRadius: "60px",
-                  opacity: 0,
-                  transition: "opacity 0.4s ease",
-                  pointerEvents: "none",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.opacity = "1";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.opacity = "0";
-                }}
-              />
+              <div className="absolute inset-[-20px] bg-gradient-to-br from-gold/10 to-transparent rounded-[60px] opacity-0 transition-opacity duration-400 pointer-events-none group-hover:opacity-100" />
             </div>
           ))}
         </div>
 
         {/* Bottom note */}
-        <div style={{ textAlign: "center", marginTop: "80px" }}>
-          <p
-            className="font-sans"
-            style={{
-              fontSize: "10px",
-              letterSpacing: "0.3em",
-              textTransform: "uppercase",
-              color: "rgba(201,168,76,0.4)",
-            }}
-          >
+        <div className="text-center mt-20">
+          <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-gold/40">
             Strategic content design · Visual storytelling · Data-driven insights
           </p>
         </div>
