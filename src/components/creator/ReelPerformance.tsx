@@ -8,7 +8,7 @@ const mockupContent = [
     headline: "The 30° Rule",
     description: "Why camera angles between 15–25° improve engagement retention.",
     visual: "Minimal diagram with angle indicator",
-    video: "/content/gow gow.mp4",
+    video: "/content/gow_gow.mp4",
     section: "entertainment"
   },
   {
@@ -87,42 +87,66 @@ export default function ReelPerformance() {
   };
 
   useEffect(() => {
-    // First 3 videos: 10-second loop from start with smooth fade
-    [0, 1, 2].forEach((index) => {
-      const video = videoRefs[index].current;
-      if (!video) return;
+    const cleanups: (() => void)[] = [];
 
+    // Helper for videos 1-3 and 5-8: 10-second loop from start with smooth fade
+    const setupStandardLoop = (video: HTMLVideoElement) => {
       const handleTimeUpdate = () => {
-        if (video.currentTime >= 9.5) {
+        const loopDuration = video.duration && !isNaN(video.duration) ? Math.min(10, video.duration) : 10;
+        const fadeTime = Math.max(0, loopDuration - 0.5);
+
+        if (video.currentTime >= fadeTime) {
           video.style.transition = 'opacity 0.3s ease';
           video.style.opacity = '0';
         }
-        if (video.currentTime >= 10) {
+        if (video.currentTime >= loopDuration) {
           video.currentTime = 0;
           video.style.opacity = '1';
-          setTimeout(() => {
+          const timer = setTimeout(() => {
             video.style.transition = 'none';
           }, 300);
           video.play().catch(() => {});
+          cleanups.push(() => clearTimeout(timer));
         }
       };
 
       video.addEventListener('timeupdate', handleTimeUpdate);
-      return () => video.removeEventListener('timeupdate', handleTimeUpdate);
+      cleanups.push(() => video.removeEventListener('timeupdate', handleTimeUpdate));
+    };
+
+    // Setup for standard videos (indices 0, 1, 2, 4, 5, 6, 7)
+    [0, 1, 2, 4, 5, 6, 7].forEach((index) => {
+      const video = videoRefs[index].current;
+      if (video) {
+        setupStandardLoop(video);
+      }
     });
 
-    // Fourth video: last 8 seconds loop with smooth fade
+    // Setup for Fourth video (index 3): last 8 seconds loop with smooth fade
     const video4 = videoRefs[3].current;
     if (video4) {
-      const handleLoadedMetadata = () => {
+      const initVideo4 = () => {
         const duration = video4.duration;
-        const startTime = duration - 8;
-        video4.currentTime = startTime;
+        if (duration && !isNaN(duration)) {
+          const startTime = Math.max(0, duration - 8);
+          video4.currentTime = startTime;
+        }
+      };
+
+      // If metadata is already loaded, initialize immediately
+      if (video4.readyState >= 1) {
+        initVideo4();
+      }
+
+      const handleLoadedMetadata = () => {
+        initVideo4();
       };
 
       const handleTimeUpdate = () => {
         const duration = video4.duration;
-        const startTime = duration - 8;
+        if (!duration || isNaN(duration)) return;
+        const startTime = Math.max(0, duration - 8);
+
         if (video4.currentTime >= duration - 0.5) {
           video4.style.transition = 'opacity 0.3s ease';
           video4.style.opacity = '0';
@@ -130,44 +154,25 @@ export default function ReelPerformance() {
         if (video4.currentTime >= duration) {
           video4.currentTime = startTime;
           video4.style.opacity = '1';
-          setTimeout(() => {
+          const timer = setTimeout(() => {
             video4.style.transition = 'none';
           }, 300);
           video4.play().catch(() => {});
+          cleanups.push(() => clearTimeout(timer));
         }
       };
 
       video4.addEventListener('loadedmetadata', handleLoadedMetadata);
       video4.addEventListener('timeupdate', handleTimeUpdate);
-      return () => {
+      cleanups.push(() => {
         video4.removeEventListener('loadedmetadata', handleLoadedMetadata);
         video4.removeEventListener('timeupdate', handleTimeUpdate);
-      };
+      });
     }
 
-    // Videos 5-8: 10-second loop from start with smooth fade
-    [4, 5, 6, 7].forEach((index) => {
-      const video = videoRefs[index].current;
-      if (!video) return;
-
-      const handleTimeUpdate = () => {
-        if (video.currentTime >= 9.5) {
-          video.style.transition = 'opacity 0.3s ease';
-          video.style.opacity = '0';
-        }
-        if (video.currentTime >= 10) {
-          video.currentTime = 0;
-          video.style.opacity = '1';
-          setTimeout(() => {
-            video.style.transition = 'none';
-          }, 300);
-          video.play().catch(() => {});
-        }
-      };
-
-      video.addEventListener('timeupdate', handleTimeUpdate);
-      return () => video.removeEventListener('timeupdate', handleTimeUpdate);
-    });
+    return () => {
+      cleanups.forEach((cleanup) => cleanup());
+    };
   }, []);
 
   return (
