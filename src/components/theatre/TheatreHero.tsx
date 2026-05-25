@@ -145,29 +145,29 @@ export default function TheatreHero() {
         </p>
 
         {/* CTA row */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-xs sm:max-w-none mx-auto mb-10 md:mb-16">
           <button
             onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-            className="border border-gold/40 text-gold font-sans text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold/10 hover:border-gold transition-all duration-300"
+            className="flex items-center justify-center gap-3 w-full sm:w-auto border border-gold/40 text-gold font-sans text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold/10 hover:border-gold transition-all duration-300"
           >
             Hire Me
           </button>
           <button
             onClick={() => document.querySelector("#timeline")?.scrollIntoView({ behavior: "smooth" })}
-            className="bg-gold text-void font-sans font-semibold text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold-light transition-colors duration-300"
+            className="flex items-center justify-center gap-3 w-full sm:w-auto bg-gold text-void font-sans font-semibold text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold-light transition-colors duration-300"
           >
             See My Journey
           </button>
           <button
             onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-            className="border border-gold/40 text-gold font-sans text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold/10 hover:border-gold transition-all duration-300"
+            className="flex items-center justify-center gap-3 w-full sm:w-auto border border-gold/40 text-gold font-sans text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold/10 hover:border-gold transition-all duration-300"
           >
             Commission
           </button>
         </div>
 
         {/* Stats row */}
-        <div className="flex items-center justify-center gap-10">
+        <div className="grid grid-cols-2 gap-4 max-w-sm mx-auto sm:flex sm:items-center sm:justify-center sm:gap-10 sm:max-w-none">
           {[
             { num: "15+",  label: "Performances" },
             { num: "5+",   label: "Competitions" },

@@ -20,13 +20,13 @@ export default function About() {
       />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 lg:gap-24 items-center">
 
           {/* Portrait */}
           <div className="relative order-2 lg:order-1">
             <div className="relative aspect-[3/4] max-w-sm mx-auto lg:mx-0">
               {/* Outer frame */}
-              <div className="absolute -inset-3 border border-gold/10" />
+              <div className="absolute -inset-2 sm:-inset-3 border border-gold/10" />
               <div className="absolute -inset-1 border border-gold/20" />
 
               {/* Portrait placeholder */}
@@ -58,11 +58,11 @@ export default function About() {
               </div>
 
               {/* Corner accent */}
-              <div className="absolute -bottom-6 -right-6 w-20 h-20 border-r-2 border-b-2 border-gold/30" />
+              <div className="absolute -bottom-4 -right-4 sm:-bottom-6 -right-6 w-12 h-12 sm:w-20 sm:h-20 border-r-2 border-b-2 border-gold/30" />
 
               {/* Badge */}
-              <div className="absolute -bottom-4 left-4 bg-charcoal border border-gold/20 px-4 py-2">
-                <p className="font-sans text-[9px] tracking-[0.3em] uppercase text-gold/60">
+              <div className="absolute -bottom-3 left-2 sm:left-4 sm:-bottom-4 bg-charcoal border border-gold/20 px-3 sm:px-4 py-1.5 sm:py-2">
+                <p className="font-secondary text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.3em] uppercase text-gold/60">
                   India · On Stage & On Canvas
                 </p>
               </div>
@@ -70,12 +70,12 @@ export default function About() {
           </div>
 
           {/* Content */}
-          <div className="order-1 lg:order-2 space-y-8">
+          <div className="order-1 lg:order-2 space-y-6 sm:space-y-8">
             {/* Section label */}
             <div className="flex items-center gap-4">
-              <span className="font-sans text-[10px] text-gold/60 tracking-widest">01</span>
+              <span className="font-primary text-[10px] text-gold/60 tracking-widest">01</span>
               <div className="h-px w-10 bg-gold/30" />
-              <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-ivory/40">About</span>
+              <span className="font-primary text-[10px] tracking-[0.3em] uppercase text-ivory/40">About</span>
             </div>
 
             <h2 className="font-serif text-display-lg text-ivory leading-tight">
@@ -84,12 +84,12 @@ export default function About() {
             </h2>
 
             <div className="space-y-4">
-              <p className="font-sans text-base md:text-lg text-ivory/55 leading-relaxed">
+              <p className="font-secondary text-base md:text-lg text-ivory/55 leading-relaxed">
                 I grew up watching stories unfold — on stages, in sketchbooks, in the quiet
                 spaces between words. I learned early that the most powerful thing a person can
                 do is make someone else feel less alone.
               </p>
-              <p className="font-sans text-base md:text-lg text-ivory/40 leading-relaxed">
+              <p className="font-secondary text-base md:text-lg text-ivory/40 leading-relaxed">
                 Today I work across theatre, visual art, and design — not as separate disciplines,
                 but as one continuous act of expression. Every brushstroke carries the rhythm of a
                 monologue. Every performance holds the composition of a painting.
@@ -97,8 +97,8 @@ export default function About() {
             </div>
 
             {/* Pull quote */}
-            <blockquote className="border-l-2 border-gold/50 pl-6 py-2">
-              <p className="font-serif text-lg italic text-ivory/60 leading-relaxed">
+            <blockquote className="border-l-2 border-gold/50 pl-4 sm:pl-6 py-1.5 sm:py-2">
+              <p className="font-serif text-base sm:text-lg italic text-ivory/60 leading-relaxed">
                 &ldquo;I don&apos;t perform to be seen. I perform so others can see themselves.&rdquo;
               </p>
             </blockquote>
@@ -107,17 +107,17 @@ export default function About() {
             <div className="h-px w-24 bg-gradient-to-r from-gold/60 to-transparent" />
 
             {/* Facets */}
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
               {facets.map((f) => (
                 <div
                   key={f.title}
-                  className="group p-4 border border-white/5 hover:border-gold/25 bg-charcoal/30 hover:bg-charcoal/60 transition-all duration-500"
+                  className="group p-3 sm:p-4 border border-white/5 hover:border-gold/25 bg-charcoal/30 hover:bg-charcoal/60 transition-all duration-500"
                 >
-                  <f.icon size={18} className="text-gold/50 mb-2 group-hover:text-gold transition-colors duration-300" />
-                  <p className="font-sans text-xs font-medium text-ivory/70 mb-1 group-hover:text-ivory transition-colors duration-300">
+                  <f.icon size={16} className="text-gold/50 mb-2 group-hover:text-gold transition-colors duration-300" />
+                  <p className="font-primary text-[11px] sm:text-xs font-medium text-ivory/70 mb-1 group-hover:text-ivory transition-colors duration-300">
                     {f.title}
                   </p>
-                  <p className="font-sans text-[10px] text-smoke leading-relaxed">{f.desc}</p>
+                  <p className="font-secondary text-[9px] sm:text-[10px] text-smoke leading-relaxed">{f.desc}</p>
                 </div>
               ))}
             </div>

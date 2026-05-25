@@ -88,87 +88,53 @@ export default function ReelPerformance() {
 
   useEffect(() => {
     const cleanups: (() => void)[] = [];
-
-    // Helper for videos 1-3 and 5-8: 10-second loop from start with smooth fade
-    const setupStandardLoop = (video: HTMLVideoElement) => {
-      const handleTimeUpdate = () => {
-        const loopDuration = video.duration && !isNaN(video.duration) ? Math.min(10, video.duration) : 10;
-        const fadeTime = Math.max(0, loopDuration - 0.5);
-
-        if (video.currentTime >= fadeTime) {
-          video.style.transition = 'opacity 0.3s ease';
-          video.style.opacity = '0';
-        }
-        if (video.currentTime >= loopDuration) {
-          video.currentTime = 0;
-          video.style.opacity = '1';
-          const timer = setTimeout(() => {
-            video.style.transition = 'none';
-          }, 300);
-          video.play().catch(() => {});
-          cleanups.push(() => clearTimeout(timer));
-        }
-      };
-
-      video.addEventListener('timeupdate', handleTimeUpdate);
-      cleanups.push(() => video.removeEventListener('timeupdate', handleTimeUpdate));
-    };
-
-    // Setup for standard videos (indices 0, 1, 2, 4, 5, 6, 7)
-    [0, 1, 2, 4, 5, 6, 7].forEach((index) => {
-      const video = videoRefs[index].current;
-      if (video) {
-        setupStandardLoop(video);
-      }
-    });
-
-    // Setup for Fourth video (index 3): last 8 seconds loop with smooth fade
-    const video4 = videoRefs[3].current;
-    if (video4) {
-      const initVideo4 = () => {
-        const duration = video4.duration;
+    const activeRefs = videoRefs.map(r => r.current);
+    
+    activeRefs.forEach((video, index) => {
+      if (!video) return;
+      const isVideo4 = index === 3;
+      let rafId: number;
+      
+      const checkLoop = () => {
+        const duration = video.duration;
         if (duration && !isNaN(duration)) {
-          const startTime = Math.max(0, duration - 8);
-          video4.currentTime = startTime;
+          const maxDur = isVideo4 ? duration : Math.min(10, duration);
+          const start = isVideo4 ? Math.max(0, duration - 8) : 0;
+          const fadeStart = Math.max(start, maxDur - 0.5);
+          
+          if (video.currentTime >= maxDur) {
+            video.currentTime = start;
+            video.style.opacity = "1";
+            video.play().catch(() => {});
+          } else if (video.currentTime >= fadeStart) {
+            const ratio = (video.currentTime - fadeStart) / (maxDur - fadeStart);
+            video.style.opacity = Math.max(0, 1 - ratio).toString();
+          } else {
+            video.style.opacity = "1";
+          }
         }
+        rafId = requestAnimationFrame(checkLoop);
       };
-
-      // If metadata is already loaded, initialize immediately
-      if (video4.readyState >= 1) {
-        initVideo4();
+      
+      // Initialize start time for video 4 once metadata is ready
+      if (isVideo4) {
+        const initVideo4 = () => {
+          const duration = video.duration;
+          if (duration && !isNaN(duration)) {
+            video.currentTime = Math.max(0, duration - 8);
+          }
+        };
+        if (video.readyState >= 1) {
+          initVideo4();
+        } else {
+          video.addEventListener('loadedmetadata', initVideo4);
+          cleanups.push(() => video.removeEventListener('loadedmetadata', initVideo4));
+        }
       }
 
-      const handleLoadedMetadata = () => {
-        initVideo4();
-      };
-
-      const handleTimeUpdate = () => {
-        const duration = video4.duration;
-        if (!duration || isNaN(duration)) return;
-        const startTime = Math.max(0, duration - 8);
-
-        if (video4.currentTime >= duration - 0.5) {
-          video4.style.transition = 'opacity 0.3s ease';
-          video4.style.opacity = '0';
-        }
-        if (video4.currentTime >= duration) {
-          video4.currentTime = startTime;
-          video4.style.opacity = '1';
-          const timer = setTimeout(() => {
-            video4.style.transition = 'none';
-          }, 300);
-          video4.play().catch(() => {});
-          cleanups.push(() => clearTimeout(timer));
-        }
-      };
-
-      video4.addEventListener('loadedmetadata', handleLoadedMetadata);
-      video4.addEventListener('timeupdate', handleTimeUpdate);
-      cleanups.push(() => {
-        video4.removeEventListener('loadedmetadata', handleLoadedMetadata);
-        video4.removeEventListener('timeupdate', handleTimeUpdate);
-      });
-    }
+      rafId = requestAnimationFrame(checkLoop);
+      cleanups.push(() => cancelAnimationFrame(rafId));
+    });
 
     return () => {
       cleanups.forEach((cleanup) => cleanup());
@@ -214,7 +180,7 @@ export default function ReelPerformance() {
         </h2>
 
         {/* iPhone mockup showcase - Entertainment reels */}
-        <div className="flex justify-center gap-8 lg:gap-10 flex-wrap mb-20">
+        <div className="grid grid-cols-2 gap-3 justify-items-center max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center sm:gap-8 lg:gap-10 sm:flex-wrap mb-20">
           {mockupContent.slice(0, 4).map((item, index) => (
             <div
               key={index}
@@ -262,7 +228,7 @@ export default function ReelPerformance() {
         </div>
 
         {/* iPhone mockup showcase - Passionate reels */}
-        <div className="flex justify-center gap-8 lg:gap-10 flex-wrap">
+        <div className="grid grid-cols-2 gap-3 justify-items-center max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center sm:gap-8 lg:gap-10 sm:flex-wrap">
           {mockupContent.slice(4, 8).map((item, index) => (
             <div
               key={index + 4}

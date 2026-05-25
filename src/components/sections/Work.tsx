@@ -1,4 +1,5 @@
 "use client";
+import { InView } from "react-intersection-observer";
 
 import { useState } from "react";
 import { ExternalLink, Play, X } from "lucide-react";
@@ -106,7 +107,7 @@ export default function Work() {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-14">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8 mb-10 md:mb-14">
           <div>
             <div className="flex items-center gap-4 mb-4">
               <span className="font-sans text-[10px] text-gold/60 tracking-widest">02</span>
@@ -135,7 +136,7 @@ export default function Work() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
           {filtered.map((p) => (
             <div
               key={p.id}
@@ -191,18 +192,24 @@ export default function Work() {
                   </div>
                 </>
               ) : p.hoverVideo ? (
-                <video
-                  src={p.hoverVideo}
-                  loop
-                  playsInline
-                  preload="auto"
-                  className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
-                  onTimeUpdate={(e) => {
-                    if (p.maxDuration && e.currentTarget.currentTime >= p.maxDuration) {
-                      e.currentTarget.currentTime = 0;
-                    }
-                  }}
-                />
+                <InView triggerOnce={false} threshold={0.1}>
+                  {({ inView, ref }) => (
+                    <video
+                      ref={ref}
+                      src={p.hoverVideo}
+                      loop
+                      playsInline
+                      preload="none"
+                      className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
+                      style={{ display: inView ? 'block' : 'none' }}
+                      onTimeUpdate={(e) => {
+                        if (p.maxDuration && e.currentTarget.currentTime >= p.maxDuration) {
+                          e.currentTarget.currentTime = 0;
+                        }
+                      }}
+                    />
+                  )}
+                </InView>
               ) : (
                 <div
                   className={`absolute inset-0 bg-center transition-transform duration-700 group-hover:scale-105 ${p.fit ? 'bg-contain bg-no-repeat' : 'bg-cover'}`}
@@ -218,7 +225,7 @@ export default function Work() {
               />
 
               {/* Content */}
-              <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between z-10">
+              <div className="absolute inset-0 p-4 sm:p-6 md:p-8 flex flex-col justify-between z-10">
                 {/* Top */}
                 <div className="flex items-start justify-between">
                   <span className="font-sans text-[9px] tracking-[0.3em] uppercase text-gold/80 border border-gold/30 px-2 py-1 bg-void/50 backdrop-blur-sm">
@@ -239,11 +246,11 @@ export default function Work() {
 
                 {/* Bottom */}
                 <div className="space-y-2">
-                  <h3 className="font-serif text-xl md:text-2xl text-ivory leading-tight drop-shadow-lg">
+                  <h3 className="font-serif text-lg sm:text-xl md:text-2xl text-ivory leading-tight drop-shadow-lg">
                     {p.title}
                   </h3>
                   <p className="font-sans text-xs text-ivory/50">{p.subtitle}</p>
-                  <p className="font-sans text-xs text-ivory/40 leading-relaxed max-w-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="font-sans text-[11px] sm:text-xs text-ivory/40 leading-relaxed max-w-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {p.desc}
                   </p>
                   <div className="flex flex-wrap gap-2 pt-1">
@@ -274,7 +281,7 @@ export default function Work() {
         </div>
 
         {/* View all */}
-        <div className="mt-14 flex justify-center">
+        <div className="mt-10 md:mt-14 flex justify-center">
           <a
             href="https://www.instagram.com/naamsebhimanav"
             target="_blank"

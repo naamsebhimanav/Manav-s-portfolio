@@ -12,7 +12,7 @@ export default function ContactSection() {
       {/* Glow effect */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/5 blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-16 relative z-10">
+      <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-16 relative z-10">
         
         {/* Left: Info */}
         <div className="space-y-12">
@@ -72,7 +72,7 @@ export default function ContactSection() {
         </div>
 
         {/* Right: Form */}
-        <div className="bg-[#0a0a0a] border border-white/5 p-8 sm:p-10 relative">
+        <div className="bg-[#0a0a0a] border border-white/5 p-5 sm:p-8 md:p-10 relative">
           <div className="absolute top-0 left-0 w-8 h-px bg-gold/50" />
           <div className="absolute top-0 left-0 w-px h-8 bg-gold/50" />
           <div className="absolute bottom-0 right-0 w-8 h-px bg-gold/50" />

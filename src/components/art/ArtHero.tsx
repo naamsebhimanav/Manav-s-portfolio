@@ -77,24 +77,24 @@ export default function ArtHero() {
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-xs sm:max-w-none mx-auto mb-10 md:mb-14">
           <button
             onClick={() => go("#gallery")}
-            className="flex items-center gap-3 bg-gold text-black font-sans font-semibold text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold-light transition-colors duration-300"
+            className="flex items-center justify-center gap-3 w-full sm:w-auto bg-gold text-black font-sans font-semibold text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold-light transition-colors duration-300"
           >
             <Brush size={14} />
             View Gallery
           </button>
           <button
             onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-            className="border border-gold/40 text-gold font-sans text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold/10 hover:border-gold transition-all duration-300"
+            className="flex items-center justify-center gap-3 w-full sm:w-auto border border-gold/40 text-gold font-sans text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold/10 hover:border-gold transition-all duration-300"
           >
             Commission a Portrait
           </button>
         </div>
 
         {/* Stats */}
-        <div className="flex items-center justify-center gap-10">
+        <div className="grid grid-cols-2 gap-4 max-w-sm mx-auto sm:flex sm:items-center sm:justify-center sm:gap-10 sm:max-w-none">
           {[
             { num: "120+", label: "Artworks" },
             { num: "15+",  label: "Commissions" },

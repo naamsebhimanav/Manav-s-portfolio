@@ -15,8 +15,7 @@ export default function Hero() {
     >
       {/* ── Background Image ── */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-90"
-        style={{ backgroundImage: "url('/hero-bg-user.png')" }}
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-90 bg-[url('/hero-bg-user.png')] md:bg-[url('/hero-bg.jpg')]"
       />
       {/* ── Dark overlay for contrast ── */}
       <div className="absolute inset-0 bg-gradient-to-b from-void/10 via-void/60 to-void pointer-events-none" />
@@ -70,14 +69,14 @@ export default function Hero() {
       </div>
 
       {/* ── Main content ── */}
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto pt-20">
+      <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto pt-24 sm:pt-20">
         {/* Descriptor */}
-        <div className="flex items-center justify-center gap-4 mb-6">
-          <div className="h-px w-10 bg-gradient-to-r from-transparent to-white/50" />
-          <span className="font-sans text-[11px] tracking-[0.6em] uppercase text-white/70">
+        <div className="flex items-center justify-center gap-2 sm:gap-4 mb-4 sm:mb-6">
+          <div className="h-px w-6 sm:w-10 bg-gradient-to-r from-transparent to-white/50" />
+          <span className="font-sans text-[9px] sm:text-[11px] tracking-[0.4em] sm:tracking-[0.6em] uppercase text-white/70">
             Performer · Visual Artist · Storyteller
           </span>
-          <div className="h-px w-10 bg-gradient-to-l from-transparent to-white/50" />
+          <div className="h-px w-6 sm:w-10 bg-gradient-to-l from-transparent to-white/50" />
         </div>
 
         {/* Name */}
@@ -85,7 +84,7 @@ export default function Hero() {
           initial={{ opacity: 0, filter: "blur(15px)", y: 40 }}
           animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
           transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-          className="font-serif font-light text-[15vw] md:text-[10vw] text-white leading-[0.85] tracking-tight mb-6"
+          className="font-serif font-light text-[14vw] md:text-[10vw] text-white leading-[0.85] tracking-tight mb-4 sm:mb-6"
         >
           Manav Arora
         </motion.h1>
@@ -96,21 +95,21 @@ export default function Hero() {
         </p>
 
         {/* Supporting Line */}
-        <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-white/40 mb-12">
+        <p className="font-sans text-[9px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] uppercase text-white/40 mb-8 sm:mb-12">
           Blending performance, storytelling, and visual artistry
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-xs sm:max-w-none mx-auto mb-10 md:mb-16">
           <button
             onClick={() => scrollTo("#work")}
-            className="group flex items-center gap-3 bg-gold text-void font-sans font-semibold text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold-light hover:scale-[1.03] transition-all duration-300"
+            className="group flex items-center justify-center gap-3 w-full sm:w-auto bg-gold text-void font-sans font-semibold text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold-light hover:scale-[1.03] transition-all duration-300"
           >
             Explore My Work <span className="group-hover:translate-x-1 transition-transform">→</span>
           </button>
           <button
             onClick={() => scrollTo("#contact")}
-            className="flex items-center gap-3 border border-gold/50 text-gold font-sans font-medium text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold/10 hover:border-gold hover:scale-[1.03] transition-all duration-300"
+            className="flex items-center justify-center gap-3 w-full sm:w-auto border border-gold/50 text-gold font-sans font-medium text-xs tracking-[0.25em] uppercase px-8 py-4 hover:bg-gold/10 hover:border-gold hover:scale-[1.03] transition-all duration-300"
           >
             Let's Collaborate
           </button>
