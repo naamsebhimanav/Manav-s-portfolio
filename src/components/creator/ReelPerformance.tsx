@@ -131,6 +131,21 @@ export default function ReelPerformance() {
           cleanups.push(() => video.removeEventListener('loadedmetadata', initVideo4));
         }
       }
+      // Initialize start time for the first video (index 0) to 3 seconds
+      if (index === 0) {
+        const initFirst = () => {
+          const duration = video.duration;
+          if (duration && !isNaN(duration)) {
+            video.currentTime = Math.min(3, duration);
+          }
+        };
+        if (video.readyState >= 1) {
+          initFirst();
+        } else {
+          video.addEventListener('loadedmetadata', initFirst);
+          cleanups.push(() => video.removeEventListener('loadedmetadata', initFirst));
+        }
+      }
 
       rafId = requestAnimationFrame(checkLoop);
       cleanups.push(() => cancelAnimationFrame(rafId));
@@ -138,6 +153,28 @@ export default function ReelPerformance() {
 
     return () => {
       cleanups.forEach((cleanup) => cleanup());
+    };
+  }, []);
+
+  // Pause videos when they scroll out of view using IntersectionObserver
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const video = entry.target as HTMLVideoElement;
+        if (!entry.isIntersecting) {
+          video.pause();
+          video.currentTime = 0;
+          video.muted = true;
+        }
+      });
+    }, { threshold: 0.1 });
+
+    videoRefs.forEach(ref => {
+      if (ref.current) observer.observe(ref.current);
+    });
+
+    return () => {
+      observer.disconnect();
     };
   }, []);
 
@@ -182,9 +219,17 @@ export default function ReelPerformance() {
         {/* iPhone mockup showcase - Entertainment reels */}
         <div className="grid grid-cols-2 gap-3 justify-items-center max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center sm:gap-8 lg:gap-10 sm:flex-wrap mb-20">
           {mockupContent.slice(0, 4).map((item, index) => (
-            <div
+                        <div
               key={index}
               className="relative transition-all duration-500 hover:-translate-y-3 hover:scale-105"
+              onMouseLeave={() => {
+                const vid = videoRefs[index].current;
+                if (vid) {
+                  vid.pause();
+                  vid.currentTime = 0;
+                  vid.muted = true;
+                }
+              }}
             >
               {/* iPhone frame */}
               <div className="w-[160px] h-[320px] lg:w-[200px] lg:h-[400px] bg-[#1a1a1a] rounded-[40px] p-3 shadow-2xl shadow-black/50 border border-gold/10 relative">
@@ -200,15 +245,44 @@ export default function ReelPerformance() {
                         <p className="text-gold/40 text-xs text-center px-4">Video unavailable</p>
                       </div>
                     ) : (
-                      <video
-                        ref={videoRefs[index]}
-                        autoPlay
-                        muted
-                        playsInline
-                        className="w-full h-full object-cover"
-                        src={item.video}
-                        onError={() => handleVideoError(index)}
-                      />
+                        <video
+                          ref={videoRefs[index]}
+                          playsInline
+                          muted
+                          className="w-full h-full object-cover"
+                          src={item.video}
+                          onError={() => handleVideoError(index)}
+                          onMouseEnter={() => {
+                            const vid = videoRefs[index].current;
+                            if (vid) {
+                              vid.muted = false;
+                              vid.play().catch(() => {});
+                            }
+                          }}
+                          onMouseLeave={() => {
+                            const vid = videoRefs[index].current;
+                            if (vid) {
+                              vid.pause();
+                              vid.currentTime = 0;
+                              vid.muted = true;
+                            }
+                          }}
+                          onTouchStart={() => {
+                            const vid = videoRefs[index].current;
+                            if (vid) {
+                              vid.muted = false;
+                              vid.play().catch(() => {});
+                            }
+                          }}
+                          onTouchEnd={() => {
+                            const vid = videoRefs[index].current;
+                            if (vid) {
+                              vid.pause();
+                              vid.currentTime = 0;
+                              vid.muted = true;
+                            }
+                          }}
+                        />
                     )}
                   </div>
                 </div>
@@ -230,9 +304,17 @@ export default function ReelPerformance() {
         {/* iPhone mockup showcase - Passionate reels */}
         <div className="grid grid-cols-2 gap-3 justify-items-center max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center sm:gap-8 lg:gap-10 sm:flex-wrap">
           {mockupContent.slice(4, 8).map((item, index) => (
-            <div
+                        <div
               key={index + 4}
               className="relative transition-all duration-500 hover:-translate-y-3 hover:scale-105"
+              onMouseLeave={() => {
+                const vid = videoRefs[index + 4].current;
+                if (vid) {
+                  vid.pause();
+                  vid.currentTime = 0;
+                  vid.muted = true;
+                }
+              }}
             >
               {/* iPhone frame */}
               <div className="w-[160px] h-[320px] lg:w-[200px] lg:h-[400px] bg-[#1a1a1a] rounded-[40px] p-3 shadow-2xl shadow-black/50 border border-gold/10 relative">
@@ -248,15 +330,44 @@ export default function ReelPerformance() {
                         <p className="text-gold/40 text-xs text-center px-4">Video unavailable</p>
                       </div>
                     ) : (
-                      <video
-                        ref={videoRefs[index + 4]}
-                        autoPlay
-                        muted
-                        playsInline
-                        className="w-full h-full object-cover"
-                        src={item.video}
-                        onError={() => handleVideoError(index + 4)}
-                      />
+                        <video
+                          ref={videoRefs[index + 4]}
+                          playsInline
+                          muted
+                          className="w-full h-full object-cover"
+                          src={item.video}
+                          onError={() => handleVideoError(index + 4)}
+                          onMouseEnter={() => {
+                            const vid = videoRefs[index + 4].current;
+                            if (vid) {
+                              vid.muted = false;
+                              vid.play().catch(() => {});
+                            }
+                          }}
+                          onMouseLeave={() => {
+                            const vid = videoRefs[index + 4].current;
+                            if (vid) {
+                              vid.pause();
+                              vid.currentTime = 0;
+                              vid.muted = true;
+                            }
+                          }}
+                          onTouchStart={() => {
+                            const vid = videoRefs[index + 4].current;
+                            if (vid) {
+                              vid.muted = false;
+                              vid.play().catch(() => {});
+                            }
+                          }}
+                          onTouchEnd={() => {
+                            const vid = videoRefs[index + 4].current;
+                            if (vid) {
+                              vid.pause();
+                              vid.currentTime = 0;
+                              vid.muted = true;
+                            }
+                          }}
+                        />
                     )}
                   </div>
                 </div>

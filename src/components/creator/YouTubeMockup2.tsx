@@ -1,9 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function YouTubeMockup2() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const iframe = entry.target as HTMLIFrameElement;
+        if (!entry.isIntersecting && iframe.contentWindow) {
+          iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), '*');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    if (iframeRef.current) {
+      observer.observe(iframeRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <section className="relative py-24 lg:py-32 bg-[#080808] overflow-hidden">
@@ -58,8 +78,9 @@ export default function YouTubeMockup2() {
             <div className="relative w-full aspect-video bg-black rounded-lg overflow-hidden">
               {/* YouTube iframe */}
               <iframe
+                ref={iframeRef}
                 className="absolute inset-0 w-full h-full border-0"
-                src="https://www.youtube.com/embed/gjehw9uEAzE?rel=0"
+                src="https://www.youtube.com/embed/gjehw9uEAzE?rel=0&enablejsapi=1"
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen

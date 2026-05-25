@@ -1,7 +1,7 @@
 "use client";
-import { InView } from "react-intersection-observer";
 
-import { useState } from "react";
+
+import { useState, useRef, useEffect } from "react";
 import { ExternalLink, Play, X } from "lucide-react";
 
 type Category = "All" | "Theatre" | "Art" | "Design";
@@ -77,6 +77,62 @@ export default function Work() {
   const [active, setActive]     = useState<Category>("All");
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
+  // Track which videos have been played to hide the play button after first click
+  const [playedIds, setPlayedIds] = useState<Set<number>>(new Set());
+  // Refs to video and iframe elements for controlling playback
+  const videoRefs = useRef<Record<number, HTMLVideoElement | null>>({});
+  const iframeRefs = useRef<Record<number, HTMLIFrameElement | null>>( {});
+
+  // Pause videos/iframes when they leave the viewport using IntersectionObserver
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const target = entry.target as HTMLElement;
+        if (target.tagName === 'VIDEO') {
+          const video = target as HTMLVideoElement;
+          if (!entry.isIntersecting) {
+            video.pause();
+            video.currentTime = 0;
+            const projectId = Number(video.getAttribute('data-project-id'));
+            if (projectId) {
+              setPlayedIds((prev) => {
+                const next = new Set(prev);
+                next.delete(projectId);
+                return next;
+              });
+            }
+          }
+        } else if (target.tagName === 'IFRAME') {
+          const iframe = target as HTMLIFrameElement;
+          if (!entry.isIntersecting && iframe.contentWindow) {
+            // Pause YouTube iframe via postMessage API
+            iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), '*');
+            iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'seekTo', args: [0] }), '*');
+            const projectId = Number(iframe.getAttribute('data-project-id'));
+            if (projectId) {
+              setPlayedIds((prev) => {
+                const next = new Set(prev);
+                next.delete(projectId);
+                return next;
+              });
+            }
+          }
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // Observe all video and iframe elements currently referenced
+    Object.values(videoRefs.current).forEach(v => {
+      if (v) observer.observe(v);
+    });
+    Object.values(iframeRefs.current).forEach(i => {
+      if (i) observer.observe(i);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [active]);
 
   const filtered = active === "All" ? projects : projects.filter((p) => p.category === active);
 
@@ -143,35 +199,19 @@ export default function Work() {
               className={`group relative overflow-hidden border border-white/5 hover:border-gold/25 transition-all duration-500 ${
                 p.large ? "md:col-span-2 aspect-video" : "aspect-[4/3]"
               }`}
-              onMouseEnter={(e) => {
-                setHoveredId(p.id);
-                const video = e.currentTarget.querySelector("video");
-                if (video) {
-                  // Browsers block unmuted autoplay if no user interaction has occurred.
-                  // Try to play unmuted first, if it fails, fallback to muted.
-                  video.play().catch((err) => {
-                    console.warn("Audio playback blocked by browser, falling back to muted:", err);
-                    video.muted = true;
-                    video.play().catch(() => {});
-                  });
+              onMouseEnter={() => setHoveredId(p.id)}
+              onMouseLeave={() => setHoveredId(null)}
+              onClick={(e) => {
+                e.stopPropagation();
+                const vid = videoRefs.current[p.id];
+                const iframe = iframeRefs.current[p.id];
+                setPlayedIds((prev) => new Set(prev).add(p.id));
+                if (vid) {
+                  vid.play().catch(() => {});
                 }
-                const iframe = e.currentTarget.querySelector("iframe");
                 if (iframe && iframe.contentWindow) {
                   iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
-                }
-              }}
-              onMouseLeave={(e) => {
-                setHoveredId(null);
-                const video = e.currentTarget.querySelector("video");
-                if (video) {
-                  video.pause();
-                  video.currentTime = 0;
-                  // Reset muted state for next hover in case they interact later
-                  video.muted = false;
-                }
-                const iframe = e.currentTarget.querySelector("iframe");
-                if (iframe && iframe.contentWindow) {
-                  iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'mute', args: [] }), '*');
+                  iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
                 }
               }}
             >
@@ -184,32 +224,42 @@ export default function Work() {
                   />
                   <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-700">
                     <iframe
-                      src={`https://www.youtube.com/embed/${p.youtubeHover}?enablejsapi=1&autoplay=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1&loop=1&playlist=${p.youtubeHover}&playsinline=1`}
+                      ref={((el: HTMLIFrameElement | null) => { iframeRefs.current[p.id] = el; })}
+                      data-project-id={p.id}
+                      src={`https://www.youtube.com/embed/${p.youtubeHover}?enablejsapi=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1&loop=1&playlist=${p.youtubeHover}&playsinline=1`}
                       allow="autoplay; encrypted-media; picture-in-picture"
                       className="w-full h-full scale-[1.5] origin-center"
                       style={{ border: 'none' }}
                     />
                   </div>
+                  {!playedIds.has(p.id) && (
+                    <button className="absolute inset-0 flex items-center justify-center text-gold hover:text-ivory transition-colors">
+                      <Play size={48} />
+                    </button>
+                  )}
                 </>
               ) : p.hoverVideo ? (
-                <InView triggerOnce={false} threshold={0.1}>
-                  {({ inView, ref }) => (
-                    <video
-                      ref={ref}
-                      src={p.hoverVideo}
-                      loop
-                      playsInline
-                      preload="none"
-                      className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
-                      style={{ display: inView ? 'block' : 'none' }}
-                      onTimeUpdate={(e) => {
-                        if (p.maxDuration && e.currentTarget.currentTime >= p.maxDuration) {
-                          e.currentTarget.currentTime = 0;
-                        }
-                      }}
-                    />
+                <>
+                  <video
+                    ref={el => { videoRefs.current[p.id] = el; }}
+                    data-project-id={p.id}
+                    src={p.hoverVideo}
+                    loop
+                    playsInline
+                    preload="metadata"
+                    className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
+                    onTimeUpdate={(e) => {
+                      if (p.maxDuration && e.currentTarget.currentTime >= p.maxDuration) {
+                        e.currentTarget.currentTime = 0;
+                      }
+                    }}
+                  />
+                  {!playedIds.has(p.id) && (
+                    <button className="absolute inset-0 flex items-center justify-center text-gold hover:text-ivory transition-colors">
+                      <Play size={48} />
+                    </button>
                   )}
-                </InView>
+                </>
               ) : (
                 <div
                   className={`absolute inset-0 bg-center transition-transform duration-700 group-hover:scale-105 ${p.fit ? 'bg-contain bg-no-repeat' : 'bg-cover'}`}

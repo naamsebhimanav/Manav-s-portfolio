@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Character {
@@ -81,6 +81,18 @@ export default function CharacterGallery() {
   const [hovered, setHovered]   = useState<number | null>(null);
   const [lightbox, setLightbox] = useState<number | null>(null);
 
+  // Disable body scroll when lightbox is open
+  useEffect(() => {
+    if (lightbox !== null) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [lightbox]);
+
   const prev = () => setLightbox((l) => l !== null ? (l - 1 + characters.length) % characters.length : null);
   const next = () => setLightbox((l) => l !== null ? (l + 1) % characters.length : null);
 
@@ -141,8 +153,7 @@ export default function CharacterGallery() {
                 <video
                   src={c.img}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  autoPlay
-                  loop
+                  preload="metadata"
                   muted
                   playsInline
                   onLoadedMetadata={(e) => e.currentTarget.playbackRate = 0.5}
@@ -213,7 +224,9 @@ export default function CharacterGallery() {
                 {/* Image or Video */}
                 {characters[lightbox].img.toLowerCase().endsWith('.mov') || characters[lightbox].img.toLowerCase().endsWith('.mp4') ? (
                   <video
+                    key={lightbox}
                     src={characters[lightbox].img}
+                    controls
                     className="absolute inset-0 w-full h-full object-cover"
                     autoPlay
                     loop

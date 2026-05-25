@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X, ZoomIn, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 
 interface Artwork {
@@ -122,6 +122,18 @@ export default function GalleryGrid() {
   const [lightbox, setLightbox] = useState<number | null>(null);
   const [hovered, setHovered]   = useState<number | null>(null);
 
+  // Disable body scroll when lightbox is open
+  useEffect(() => {
+    if (lightbox !== null) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [lightbox]);
+
   const prev = () => setLightbox((l) => l !== null ? (l - 1 + artworks.length) % artworks.length : null);
   const next = () => setLightbox((l) => l !== null ? (l + 1) % artworks.length : null);
 
@@ -161,23 +173,11 @@ export default function GalleryGrid() {
               onMouseLeave={() => setHovered(null)}
               onClick={() => setLightbox(i)}
             >
-              {/* Image with zoom or video */}
-              {art.video ? (
-                <video
-                  src={art.video}
-                  loop
-                  playsInline
-                  muted
-                  autoPlay
-                  preload="auto"
-                  className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-110"
-                />
-              ) : (
-                <div
-                  className="absolute inset-0 bg-contain bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-                  style={{ backgroundImage: `url('${art.img}')` }}
-                />
-              )}
+              {/* Image with zoom */}
+              <div
+                className="absolute inset-0 bg-contain bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+                style={{ backgroundImage: `url('${art.img}')` }}
+              />
 
               {/* Base dark overlay */}
               <div className="absolute inset-0 bg-black/50 group-hover:bg-black/20 transition-colors duration-500" />
@@ -243,7 +243,9 @@ export default function GalleryGrid() {
               <div className="relative aspect-square md:aspect-auto min-h-[300px] md:min-h-[500px]">
                 {artworks[lightbox].video ? (
                   <video
+                    key={lightbox}
                     src={artworks[lightbox].video}
+                    controls
                     loop
                     playsInline
                     muted

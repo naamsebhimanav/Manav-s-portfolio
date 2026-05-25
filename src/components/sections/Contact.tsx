@@ -108,10 +108,8 @@ export default function HireMe() {
           </div>
         </div>
 
-        {/* ── Contact Form ── */}
-        <div id="hire-form" className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-
-          {/* Left info */}
+        {/* ── Contact Info ── */}
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col items-center gap-8">
           <div className="space-y-10">
             <div>
               <div className="flex items-center gap-4 mb-6">
@@ -167,96 +165,6 @@ export default function HireMe() {
                 </a>
               ))}
             </div>
-          </div>
-
-          {/* Right form */}
-          <div>
-            {sent ? (
-              <div className="flex flex-col items-center justify-center text-center gap-6 py-20">
-                <div className="w-16 h-16 border border-gold/40 rotate-45 flex items-center justify-center">
-                  <span className="text-gold text-xl -rotate-45">✓</span>
-                </div>
-                <h3 className="font-serif text-2xl text-ivory">Message received</h3>
-                <p className="font-sans text-sm text-ivory/40 max-w-xs">
-                  Thank you for reaching out. Manav will be in touch within 24 hours.
-                </p>
-                <button
-                  onClick={() => { setSent(false); setForm({ name: "", email: "", type: "", message: "" }); }}
-                  className="font-sans text-xs tracking-widest uppercase text-gold/60 hover:text-gold transition-colors duration-300 mt-2"
-                >
-                  Send another message
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-7" noValidate>
-                {/* Name */}
-                <div>
-                  <label className="font-sans text-[9px] tracking-[0.3em] uppercase text-gold/40 block mb-2">Your Name</label>
-                  <input
-                    type="text" placeholder="Full name"
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className={inputCls}
-                  />
-                  {errors.name && <p className="font-sans text-[10px] text-red-400/70 mt-1">{errors.name}</p>}
-                </div>
-
-                {/* Email */}
-                <div>
-                  <label className="font-sans text-[9px] tracking-[0.3em] uppercase text-gold/40 block mb-2">Email Address</label>
-                  <input
-                    type="email" placeholder="your@email.com"
-                    value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className={inputCls}
-                  />
-                  {errors.email && <p className="font-sans text-[10px] text-red-400/70 mt-1">{errors.email}</p>}
-                </div>
-
-                {/* Type */}
-                <div>
-                  <label className="font-sans text-[9px] tracking-[0.3em] uppercase text-gold/40 block mb-2">I need Manav for</label>
-                  <select
-                    value={form.type}
-                    onChange={(e) => setForm({ ...form, type: e.target.value })}
-                    className={`${inputCls} cursor-pointer`}
-                    style={{ appearance: "none" }}
-                  >
-                    <option value="" className="bg-charcoal text-smoke">Select a project type</option>
-                    {projectTypes.map((t) => (
-                      <option key={t} value={t} className="bg-charcoal text-ivory">{t}</option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Message */}
-                <div>
-                  <label className="font-sans text-[9px] tracking-[0.3em] uppercase text-gold/40 block mb-2">Tell me about your project</label>
-                  <textarea
-                    placeholder="Describe your vision, timeline, and what you're looking for..."
-                    rows={4}
-                    value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    className={`${inputCls} resize-none`}
-                  />
-                  {errors.message && <p className="font-sans text-[10px] text-red-400/70 mt-1">{errors.message}</p>}
-                </div>
-
-                {/* Submit */}
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full flex items-center justify-center gap-3 bg-gold text-void font-sans font-semibold text-xs tracking-[0.25em] uppercase py-4 hover:bg-gold-light transition-colors duration-300 disabled:opacity-60"
-                >
-                  {loading ? (
-                    <span className="w-4 h-4 border-2 border-void/30 border-t-void rounded-full animate-spin" />
-                  ) : (
-                    <Send size={14} />
-                  )}
-                  {loading ? "Sending..." : "Send Message"}
-                </button>
-              </form>
-            )}
           </div>
         </div>
       </div>
