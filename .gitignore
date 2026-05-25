@@ -26,5 +26,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 public/videos/
-# *.mp4 (commented out to allow portfolio videos to be pushed to GitHub and deployed on Vercel)
+*.mp4
 run

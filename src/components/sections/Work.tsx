@@ -57,7 +57,7 @@ const projects: Project[] = [
     tags: ["Oil Painting", "Series", "Portrait"],
     desc: "gift your loved ones a customized painting of their own from us",
     img: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&q=80",
-    hoverVideo: "/content/oil.mp4.mp4",
+    hoverVideo: "https://docs.google.com/uc?export=download&id=1HmrvW29L2KvktBbGxaDMdRUY8z2BjWBl",
     video: null, link: "", large: false,
   },
   {
