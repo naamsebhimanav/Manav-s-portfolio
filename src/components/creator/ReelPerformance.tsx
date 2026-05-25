@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const mockupContent = [
   {
@@ -48,7 +48,7 @@ const mockupContent = [
     headline: "Artistic Journey",
     description: "The path from inspiration to creation.",
     visual: "Process visualization",
-    video: "/content/oil.mp4.mp4",
+    video: "/content/oil.mp4",
     section: "passionate"
   },
   {
@@ -80,6 +80,11 @@ export default function ReelPerformance() {
     useRef<HTMLVideoElement>(null),
     useRef<HTMLVideoElement>(null)
   ];
+  const [videoErrors, setVideoErrors] = useState<Set<number>>(new Set());
+
+  const handleVideoError = (index: number) => {
+    setVideoErrors(prev => new Set(prev).add(index));
+  };
 
   useEffect(() => {
     // First 3 videos: 10-second loop from start with smooth fade
@@ -98,7 +103,7 @@ export default function ReelPerformance() {
           setTimeout(() => {
             video.style.transition = 'none';
           }, 300);
-          video.play();
+          video.play().catch(() => {});
         }
       };
 
@@ -128,7 +133,7 @@ export default function ReelPerformance() {
           setTimeout(() => {
             video4.style.transition = 'none';
           }, 300);
-          video4.play();
+          video4.play().catch(() => {});
         }
       };
 
@@ -156,7 +161,7 @@ export default function ReelPerformance() {
           setTimeout(() => {
             video.style.transition = 'none';
           }, 300);
-          video.play();
+          video.play().catch(() => {});
         }
       };
 
@@ -219,14 +224,21 @@ export default function ReelPerformance() {
 
                   {/* Content preview */}
                   <div className="h-full relative overflow-hidden">
-                    <video
-                      ref={videoRefs[index]}
-                      autoPlay
-                      muted
-                      playsInline
-                      className="w-full h-full object-cover"
-                      src={item.video}
-                    />
+                    {videoErrors.has(index) ? (
+                      <div className="w-full h-full flex items-center justify-center bg-[#0d0d0d]">
+                        <p className="text-gold/40 text-xs text-center px-4">Video unavailable</p>
+                      </div>
+                    ) : (
+                      <video
+                        ref={videoRefs[index]}
+                        autoPlay
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover"
+                        src={item.video}
+                        onError={() => handleVideoError(index)}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
@@ -260,14 +272,21 @@ export default function ReelPerformance() {
 
                   {/* Content preview */}
                   <div className="h-full relative overflow-hidden">
-                    <video
-                      ref={videoRefs[index + 4]}
-                      autoPlay
-                      muted
-                      playsInline
-                      className="w-full h-full object-cover"
-                      src={item.video}
-                    />
+                    {videoErrors.has(index + 4) ? (
+                      <div className="w-full h-full flex items-center justify-center bg-[#0d0d0d]">
+                        <p className="text-gold/40 text-xs text-center px-4">Video unavailable</p>
+                      </div>
+                    ) : (
+                      <video
+                        ref={videoRefs[index + 4]}
+                        autoPlay
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover"
+                        src={item.video}
+                        onError={() => handleVideoError(index + 4)}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
