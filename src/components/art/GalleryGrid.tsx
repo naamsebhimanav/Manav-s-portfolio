@@ -173,11 +173,21 @@ export default function GalleryGrid() {
               onMouseLeave={() => setHovered(null)}
               onClick={() => setLightbox(i)}
             >
-              {/* Image with zoom */}
-              <div
-                className="absolute inset-0 bg-contain bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-                style={{ backgroundImage: `url('${art.img}')` }}
-              />
+              {/* Image or Video thumbnail */}
+              {art.video ? (
+                <video
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  src={art.video}
+                />
+              ) : (
+                <div
+                  className="absolute inset-0 bg-contain bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+                  style={{ backgroundImage: `url('${art.img}')` }}
+                />
+              )}
 
               {/* Base dark overlay */}
               <div className="absolute inset-0 bg-black/50 group-hover:bg-black/20 transition-colors duration-500" />
