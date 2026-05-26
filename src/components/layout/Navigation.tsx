@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 const mainLinks = [
@@ -45,11 +46,17 @@ export default function Navigation() {
             onClick={(e) => { e.preventDefault(); scrollTo("#hero"); }}
             className="flex items-center gap-3 group shrink-0"
           >
-            <div className="relative w-7 h-7 flex items-center justify-center">
-              <div className="absolute inset-0 border border-gold/50 rotate-45 group-hover:rotate-[60deg] transition-transform duration-500" />
-              <div className="w-1.5 h-1.5 bg-gold rounded-full group-hover:scale-125 transition-transform duration-300" />
+            {/* Profile image as logo */}
+            <div className="relative w-9 h-9 rounded-full overflow-hidden border-2 border-gold/50 group-hover:border-gold transition-colors duration-300">
+              <Image
+                src="/theatre/navp.jpg"
+                alt="Manav Arora"
+                fill
+                className="object-cover object-top"
+                priority
+              />
             </div>
-            <span className="font-serif text-base text-ivory/90 group-hover:text-gold transition-colors duration-300 tracking-wide hidden sm:block">
+            <span className="font-serif text-base text-ivory/90 group-hover:text-gold transition-colors duration-300 tracking-wide hidden sm:block font-semibold">
               Manav Arora
             </span>
           </a>
@@ -60,7 +67,7 @@ export default function Navigation() {
               <button
                 key={l.href}
                 onClick={() => scrollTo(l.href)}
-                className="font-sans text-[10px] tracking-[0.25em] uppercase text-ivory/45 hover:text-gold transition-colors duration-300 gold-line-hover whitespace-nowrap"
+                className="font-sans text-[12px] tracking-[0.2em] uppercase text-ivory/80 hover:text-gold transition-colors duration-300 gold-line-hover whitespace-nowrap font-medium"
               >
                 {l.label}
               </button>
@@ -98,7 +105,7 @@ export default function Navigation() {
               <button
                 key={l.href}
                 onClick={() => scrollTo(l.href)}
-                className="font-serif text-3xl italic text-ivory/75 hover:text-gold transition-colors duration-300 w-full text-center"
+                className="font-serif text-3xl text-ivory/75 hover:text-gold transition-colors duration-300 w-full text-center font-bold"
               >
                 {l.label}
               </button>

@@ -83,3 +83,44 @@ body {
     transform: translateY(0);
   }
 }
+
+/* ── Global heading weights ── */
+h1, h2, h3 {
+  font-weight: 700 !important;
+}
+h4, h5, h6 {
+  font-weight: 600 !important;
+}
+
+/* ── Remove all italic styles globally ── */
+* {
+  font-style: normal !important;
+}
+
+/* ── Marquee animation for testimonials ── */
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee-scroll-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+.marquee-track {
+  display: flex;
+  gap: 1.5rem;
+  animation: marquee-scroll 35s linear infinite;
+  width: max-content;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+.marquee-track-reverse {
+  display: flex;
+  gap: 1.5rem;
+  animation: marquee-scroll-reverse 35s linear infinite;
+  width: max-content;
+}
+.marquee-track-reverse:hover {
+  animation-play-state: paused;
+}

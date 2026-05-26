@@ -7,7 +7,7 @@ import CreatorSection from "@/components/sections/CreatorSection";
 import ArtSection from "@/components/sections/ArtSection";
 import TheatreSection from "@/components/sections/TheatreSection";
 import DesignSection from "@/components/sections/DesignSection";
-import ContactSection from "@/components/sections/ContactSection";
+import Contact from "@/components/sections/Contact";
 import NotebookPage from "@/components/ui/NotebookPage";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 
@@ -23,7 +23,7 @@ export default function Home() {
         <ArtSection />
         <TheatreSection />
         <DesignSection />
-        <ContactSection />
+        <Contact />
       </main>
       <Footer />
       <ScrollToTop />

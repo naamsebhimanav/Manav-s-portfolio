@@ -166,9 +166,9 @@ export default function Work() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8 mb-10 md:mb-14">
           <div>
             <div className="flex items-center gap-4 mb-4">
-              <span className="font-sans text-[10px] text-gold/60 tracking-widest">02</span>
-              <div className="h-px w-10 bg-gold/30" />
-              <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-ivory/40">Featured Work</span>
+              <span className="font-sans text-[11px] text-gold/80 tracking-widest font-bold">02</span>
+              <div className="h-px w-10 bg-gold/50" />
+              <span className="font-sans text-[11px] tracking-[0.3em] uppercase text-ivory/70 font-semibold">Featured Work</span>
             </div>
             <h2 className="font-serif text-display-lg text-ivory">Theatre, Art &amp; Design</h2>
           </div>

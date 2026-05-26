@@ -23,7 +23,7 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 lg:gap-24 items-center">
 
           {/* Portrait */}
-          <div className="relative order-2 lg:order-1">
+          <div className="relative order-2 lg:order-1 -mt-8 lg:-mt-12">
             <div className="relative aspect-[3/4] max-w-sm mx-auto lg:mx-0">
               {/* Outer frame */}
               <div className="absolute -inset-2 sm:-inset-3 border border-gold/10" />
@@ -73,14 +73,14 @@ export default function About() {
           <div className="order-1 lg:order-2 space-y-6 sm:space-y-8">
             {/* Section label */}
             <div className="flex items-center gap-4">
-              <span className="font-primary text-[10px] text-gold/60 tracking-widest">01</span>
-              <div className="h-px w-10 bg-gold/30" />
-              <span className="font-primary text-[10px] tracking-[0.3em] uppercase text-ivory/40">About</span>
+              <span className="font-primary text-[11px] text-gold/80 tracking-widest font-bold">01</span>
+              <div className="h-px w-10 bg-gold/50" />
+              <span className="font-primary text-[11px] tracking-[0.3em] uppercase text-ivory/70 font-semibold">About</span>
             </div>
 
             <h2 className="font-serif text-display-lg text-ivory leading-tight">
               I didn&apos;t choose art —<br />
-              <span className="italic text-gold-gradient">art chose me</span>
+              <span className="text-gold-gradient">art chose me</span>
             </h2>
 
             <div className="space-y-4">
@@ -98,7 +98,7 @@ export default function About() {
 
             {/* Pull quote */}
             <blockquote className="border-l-2 border-gold/50 pl-4 sm:pl-6 py-1.5 sm:py-2">
-              <p className="font-serif text-base sm:text-lg italic text-ivory/60 leading-relaxed">
+              <p className="font-serif text-base sm:text-lg text-ivory/60 leading-relaxed">
                 &ldquo;I don&apos;t perform to be seen. I perform so others can see themselves.&rdquo;
               </p>
             </blockquote>

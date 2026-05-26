@@ -32,6 +32,34 @@ const testimonials: Testimonial[] = [
     role: "Freelancing client",
     initials: "HP",
   },
+  {
+    id: 4,
+    quote: "You must be a very hardworking guy in theatre. Mai acting se hi samajh gaya tha, isliye aake jhappi leli.",
+    name: "Abhyuday Mishra",
+    role: "A fellow competant",
+    initials: "AM",
+  },
+  {
+    id: 5,
+    quote: "Thankyou Manav for the sketch, I really appreciate your efforts, the sketch really made my day, It was super amazing. I hope your talent keeps shining and grow even more, and you achieve a lot of success in life.",
+    name: "Janvi Tiwari",
+    role: "Freelancing client",
+    initials: "Jt",
+  },
+  {
+    id: 6,
+    quote: "You go Manav! Can already tell this batman sketch is gonna be epic.can't wait to see the final piece",
+    name: "An Instagram follower",
+    role: "Instagram",
+    initials: "IF",
+  },
+  {
+    id: 7,
+    quote: "The poster you made for my play was so amazing. got so many compliments about that. thank you so much",
+    name: "Aman chaudhary",
+    role: "Afreelancing client",
+    initials: "AC",
+  },
 ];
 
 export default function Testimonials() {
@@ -69,20 +97,12 @@ export default function Testimonials() {
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-4 mb-6">
             <div className="h-px w-12 bg-gradient-to-r from-transparent to-gold/30" />
-            <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-gold/60">Testimonials</span>
+            <span className="font-sans text-[11px] tracking-[0.3em] uppercase text-gold/80 font-bold">Testimonials</span>
             <div className="h-px w-12 bg-gradient-to-l from-transparent to-gold/30" />
           </div>
-          <h2 className="font-serif text-display-lg text-ivory mb-4">
+          <h2 className="font-serif text-display-lg text-ivory mb-4 font-bold">
             What People{" "}
-            <span
-              style={{
-                fontStyle: "italic",
-                background: "linear-gradient(135deg, #c9a84c 0%, #e8c97a 50%, #c9a84c 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
+            <span className="text-gold-gradient">
               Say
             </span>
           </h2>
@@ -91,63 +111,71 @@ export default function Testimonials() {
           </p>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {testimonials.map((testimonial) => (
-            <div
-              key={testimonial.id}
-              className={`group relative bg-[#0f0f0f] border border-white/5 rounded-lg p-8 transition-all duration-500 hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5 hover:-translate-y-1 ${testimonial.id === 3 ? 'md:col-span-2 md:max-w-2xl md:mx-auto' : ''}`}
-              onMouseEnter={() => setHoveredId(testimonial.id)}
-              onMouseLeave={() => setHoveredId(null)}
-            >
-              {/* Quote icon */}
+        {/* Testimonials Marquee */}
+        <div className="relative w-full max-w-[100vw] overflow-hidden left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] px-4 md:px-0">
+
+          {/* Gradient masks for fading edges */}
+          <div className="absolute top-0 bottom-0 left-0 w-16 md:w-32 bg-gradient-to-r from-[#080808] to-transparent z-20 pointer-events-none" />
+          <div className="absolute top-0 bottom-0 right-0 w-16 md:w-32 bg-gradient-to-l from-[#080808] to-transparent z-20 pointer-events-none" />
+
+          <div className="marquee-track py-4">
+            {/* Duplicate array four times to ensure enough width to prevent negative space on wide screens */}
+            {[...testimonials, ...testimonials, ...testimonials, ...testimonials].map((testimonial, idx) => (
               <div
-                className="absolute top-6 left-6 text-gold/20 font-serif text-6xl leading-none"
-                style={{ fontFamily: "Georgia, serif" }}
+                key={`${testimonial.id}-${idx}`}
+                className="group relative bg-[#0f0f0f] border border-white/5 rounded-lg p-8 transition-all duration-500 hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5 shrink-0 w-[300px] md:w-[400px] lg:w-[450px]"
+                onMouseEnter={() => setHoveredId(testimonial.id)}
+                onMouseLeave={() => setHoveredId(null)}
               >
-                "
-              </div>
-
-              {/* Quote */}
-              <p className="font-serif text-lg text-ivory/90 leading-relaxed mb-6 relative z-10 pl-8">
-                {testimonial.quote}
-              </p>
-
-              {/* Author */}
-              <div className="flex items-center gap-4 pl-8">
-                {/* Initials circle */}
+                {/* Quote icon */}
                 <div
-                  className="w-12 h-12 rounded-full flex items-center justify-center font-sans font-semibold text-sm text-gold border border-gold/30 transition-colors duration-300 group-hover:border-gold/60"
-                  style={{
-                    background: hoveredId === testimonial.id
-                      ? "rgba(201,168,76,0.1)"
-                      : "rgba(201,168,76,0.05)",
-                  }}
+                  className="absolute top-6 left-6 text-gold/20 font-serif text-6xl leading-none"
+                  style={{ fontFamily: "Georgia, serif" }}
                 >
-                  {testimonial.initials}
+                  "
                 </div>
 
-                {/* Name and role */}
-                <div>
-                  <p className="font-sans font-semibold text-sm text-ivory mb-1">
-                    {testimonial.name}
-                  </p>
-                  <p className="font-sans text-xs text-ivory/40 tracking-wide">
-                    {testimonial.role}
-                  </p>
+                {/* Quote */}
+                <p className="font-serif text-base md:text-lg text-ivory/90 leading-relaxed mb-6 relative z-10 pl-8">
+                  {testimonial.quote}
+                </p>
+
+                {/* Author */}
+                <div className="flex items-center gap-4 pl-8">
+                  {/* Initials circle */}
+                  <div
+                    className="w-12 h-12 rounded-full flex items-center justify-center font-sans font-semibold text-sm text-gold border border-gold/30 transition-colors duration-300 group-hover:border-gold/60"
+                    style={{
+                      background: hoveredId === testimonial.id
+                        ? "rgba(201,168,76,0.1)"
+                        : "rgba(201,168,76,0.05)",
+                    }}
+                  >
+                    {testimonial.initials}
+                  </div>
+
+                  {/* Name and role */}
+                  <div>
+                    <p className="font-sans font-semibold text-sm text-ivory mb-1">
+                      {testimonial.name}
+                    </p>
+                    <p className="font-sans text-xs text-ivory/40 tracking-wide">
+                      {testimonial.role}
+                    </p>
+                  </div>
                 </div>
+
+                {/* Subtle glow on hover */}
+                <div
+                  className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  style={{
+                    background:
+                      "radial-gradient(ellipse 80% 80% at 50% 50%, rgba(201,168,76,0.03) 0%, transparent 70%)",
+                  }}
+                />
               </div>
-
-              {/* Subtle glow on hover */}
-              <div
-                className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                style={{
-                  background:
-                    "radial-gradient(ellipse 80% 80% at 50% 50%, rgba(201,168,76,0.03) 0%, transparent 70%)",
-                }}
-              />
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

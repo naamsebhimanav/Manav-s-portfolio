@@ -228,7 +228,7 @@ export default function PerformancesTimeline() {
                         isOpen ? "max-h-48 opacity-100" : "max-h-0 opacity-0"
                       }`}
                     >
-                      <div className="px-6 pb-6 md:pl-[4.5rem] space-y-3">
+                      <div className="px-6 pb-6 sm:pl-24 space-y-3">
                         <p className="font-sans text-sm text-ivory/50 leading-relaxed">{p.description}</p>
                         <div className="flex flex-wrap gap-2">
                           {p.tags.map((t) => (

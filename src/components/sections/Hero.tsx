@@ -69,7 +69,7 @@ export default function Hero() {
       </div>
 
       {/* ── Main content ── */}
-      <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto pt-24 sm:pt-20">
+      <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto pt-32 sm:pt-28">
         {/* Descriptor */}
         <div className="flex items-center justify-center gap-2 sm:gap-4 mb-4 sm:mb-6">
           <div className="h-px w-6 sm:w-10 bg-gradient-to-r from-transparent to-white/50" />
@@ -90,7 +90,7 @@ export default function Hero() {
         </motion.h1>
 
         {/* Tagline */}
-        <p className="font-serif italic text-display-md text-white/90 mb-2 leading-relaxed max-w-3xl mx-auto">
+        <p className="font-serif text-display-md text-white/90 mb-2 leading-relaxed max-w-3xl mx-auto">
           Where stories breathe through performance and visuals
         </p>
 
